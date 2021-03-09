@@ -1,0 +1,59 @@
+@import "../../../styles.scss";
+
+header{
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+
+  .header__container{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header__logo{
+      width: 170px;
+      margin: 10px;
+    }
+
+    .header__login-container{
+      .header__login{
+        height: 35px;
+        background: #F4EBEB;
+        border: 0.5px solid #252424;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+      }
+
+      .header__submit{
+        width: 78px;
+        height: 35px;
+        background: #F4EBEB;
+        border: 0.5px solid #252424;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin-left: 20px;
+        font-size: 14px;
+      }
+    }
+
+    .header__logged{
+      display: flex;
+
+      .header__user-logo{
+        border: 0ch;
+        background: none;
+        margin-left: 20px;
+        padding: 0;
+        outline: none;
+
+        .user-logo{
+          width: 50px;
+        }
+      }
+    }
+  }
+}
