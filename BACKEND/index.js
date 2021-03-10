@@ -6,6 +6,7 @@ const chalk = require('chalk')
 require('dotenv').config()
 const usersRouter = require('./src/routers/usersRouter')
 const booksRouter = require('./src/routers/booksRouter')
+// const authRouter = require('./src/routers/authRouter')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -18,8 +19,11 @@ app.use(morgan('dev'))
 
 app.use(express.json())
 
+// require('./src/passport')(app) // configuración serialize y deserialize
+
 app.use('/api/users', usersRouter)
 app.use('/api/books', booksRouter)
+// app.use('/authenticate', authRouter)
 
 app.listen(port, () => {
   debug(`Server is running in ${chalk.yellow(`${localhost}${port}`)}`)
