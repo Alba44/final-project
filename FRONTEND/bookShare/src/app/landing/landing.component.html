@@ -1,9 +1,28 @@
 <div class="landing__container">
-  <img class="icon__profile" src="../../assets/media/icons8-libro-abierto-64.png" alt="profile icon">
-  <img class="landing__logo" src="../../assets//media/Logo/logo_transparent_cropped.png" alt="BookShare logo">
-  <p class="landing__subtitle">What are you looking for?</p>
-  <div>
-    <input class="landing__search-input" type="text">
-    <button class="landing__search-button">Search</button>
+  <div class="landing__general">
+    <img class="landing__logo" src="../../assets//media/Logo/logo_transparent_cropped.png" alt="BookShare logo">
+    <p class="landing__subtitle">What are you looking for?</p>
+    <div>
+      <input class="landing__search-input" type="text">
+      <button class="landing__search-button">Search</button>
+    </div>
+  </div>
+  <div class="landing__register-signIn">
+    <button class="landing__signIn" type="button" (click)="changeClassLogin()">Sign in</button>
+    <button class="landing__register" type="button" (click)="changeClassRegister()">Sign up</button>
+    <div
+      class="landing__popup-login hideLogin"
+      [ngClass]="{displayLogin: statusLogin, hideLogin: !statusLogin}">
+      <input class="popup__login" type="text" placeholder="Email">
+      <input class="popup__login" type="text" placeholder="Password">
+      <button class="popup__submit" type="submit">Submit</button>
+    </div>
+    <div
+      class="landing__popup-login hideRegister"
+      [ngClass]="{displayRegister: statusRegister, hideRegister: !statusRegister}">
+      <input class="popup__login" type="text" placeholder="Email">
+      <input class="popup__login" type="text" placeholder="Password">
+      <button class="popup__submit" type="submit">Register</button>
+    </div>
   </div>
 </div>

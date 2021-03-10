@@ -1,0 +1,37 @@
+@import "../../../styles.scss";
+
+footer{
+  height: 170px;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+
+  .footer__container{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .footer__logo-title{
+      height: 30px;
+      width: auto;
+    }
+
+    .footer__RRSS{
+      display: flex;
+      width: 200px;
+      align-items: center;
+
+      p{
+        color: $rose;
+        font-size: 18px;
+        margin-right: 20px;
+      }
+
+      img{
+        height: 30px;
+      }
+    }
+  }
+
+}

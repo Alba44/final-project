@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { LandingComponent } from './landing/landing.component'
 import { DashboardComponent } from './main/dashboard/dashboard.component'
-import { MainComponent } from './main/main.component';
+import { MainComponent } from './main/main.component'
 import { HeaderComponent } from './main/header/header.component'
+import { FooterComponent } from './main/footer/footer.component'
+import { ProfileComponent } from './main/profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { HeaderComponent } from './main/header/header.component'
     LandingComponent,
     DashboardComponent,
     MainComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

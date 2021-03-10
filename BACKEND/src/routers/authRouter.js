@@ -1,19 +1,19 @@
 const { Router } = require('express')
 const passport = require('passport')
-const controller = require('../controllers/authControllers')
+const { register, login } = require('../controllers/authControllers')
 
 function authRouter () {
   const router = Router()
 
   router
     .route('/register')
-    .post(controller.register)
+    .post(register)
 
   router
     .route('/login')
     .post(
       passport.authenticate('local'),
-      controller.login
+      login
     )
 
   return router
