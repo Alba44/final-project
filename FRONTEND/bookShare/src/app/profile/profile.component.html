@@ -58,46 +58,10 @@
   <section class="profile__own-books">
     <h2 class="books__title">YOUR BORROWED BOOKS</h2>
     <div class="books-display">
-      <div class="own-books__container">
-        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
-        <p>Title</p>
-        <p>Author</p>
-        <p>Available/not</p>
-      </div>
-      <div class="own-books__container">
-        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
-        <p>Title</p>
-        <p>Author</p>
-        <p>Available/not</p>
-      </div>
-      <div class="own-books__container">
-        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
-        <p>Title</p>
-        <p>Author</p>
-        <p>Available/not</p>
-      </div>
-      <div class="own-books__container">
-        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
-        <p>Title</p>
-        <p>Author</p>
-        <p>Available/not</p>
-      </div>
-      <div class="own-books__container">
-        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
-        <p>Title</p>
-        <p>Author</p>
-        <p>Available/not</p>
-      </div>
-      <div class="own-books__container">
-        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
-        <p>Title</p>
-        <p>Author</p>
-        <p>Available/not</p>
-      </div>
-      <div class="own-books__container">
-        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
-        <p>Title</p>
-        <p>Author</p>
+      <div class="own-books__container" *ngFor="let book of books">
+        <img class="own-books__cover" src={{book.covers}} alt="book cover">
+        <p>{{book.title}}</p>
+        <p>{{book.authorName}}</p>
         <p>Available/not</p>
       </div>
     </div>
