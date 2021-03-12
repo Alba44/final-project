@@ -1,4 +1,4 @@
-@import "../../../styles.scss";
+@import "../../styles.scss";
 
 header{
   background-color: $white;
@@ -44,11 +44,12 @@ header{
       display: flex;
 
       .header__user-logo{
-        border: 0ch;
+        border: 0;
         background: none;
         margin-left: 20px;
         padding: 0;
         outline: none;
+        cursor: pointer;
 
         .user-logo{
           width: 50px;

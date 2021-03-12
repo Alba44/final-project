@@ -1,0 +1,106 @@
+<app-header></app-header>
+<section class="profile__container">
+  <section class="profile__user-info">
+    <div class="profile__picture-container">
+      <div class="profile__picture-frame">
+        <img class="profile__picture" src="../../assets/media/394-3947083_round-profile-picture-png-transparent-png.png" alt="profile"/>
+      </div>
+      <button class="profile__picture-update" [ngClass]="{hide: isPicUpdated, display: !isPicUpdated}" (click)="startUpdatePic()">Update profile pic</button>
+      <div class="picture-update" [ngClass]="{display: isPicUpdated, hide: !isPicUpdated}">
+        <input class="picture-update-input" type="file" accept="image/*">
+        <button class="picture-update-btn">Update</button>
+      </div>
+    </div>
+    <article class="profile__details-container">
+      <form class="profile__details-form" [formGroup]="updateDetails">
+        <button
+        class="details__update-btn"
+        type="submit">
+        Update info
+      </button>
+      <p>Status: {{updateDetails.status}}</p>
+        <label for="nickname">Nickname:</label>
+        <input id="nickname" type="text" formControlName="nickname"/>
+        <label for="name">Name:</label>
+        <input id="name" type="text" formControlName="name"/>
+        <label for="dob">Date of birth:</label>
+        <input id="dob" type="text" formControlName="dob"/>
+        <label for="email">Email:</label>
+        <input id="email" type="email" formControlName="email"/>
+        <label for="password">Password:</label>
+        <input id="password" type="password" formControlName="password"/>
+        <span *ngIf="passwordControl.hasError('minLength')">
+          Must have minimum {{passwordControl.getError("minLength").requiredLength}} characters
+        </span>
+        <br>
+
+      </form>
+      <ul class="profile__details-list">
+        <li>Books to lend:</li>
+        <li>Books borrowed:</li>
+      </ul>
+    </article>
+  </section>
+  <section class="profile__own-books">
+    <h2 class="books__title">YOUR BOOKS</h2>
+    <button class="books__add--btn">
+      <img class="books__add" src="../../assets/media/icons8-libro-abierto-64 (1).png" alt="add book icon">
+    </button>
+    <div class="books-display">
+      <div class="own-books__container" *ngFor="let book of books">
+        <img class="own-books__cover" src={{book.covers}} alt="book cover">
+        <p>{{book.title}}</p>
+        <p>{{book.authorName}}</p>
+        <p>Available/not</p>
+      </div>
+    </div>
+  </section>
+  <section class="profile__own-books">
+    <h2 class="books__title">YOUR BORROWED BOOKS</h2>
+    <div class="books-display">
+      <div class="own-books__container">
+        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
+        <p>Title</p>
+        <p>Author</p>
+        <p>Available/not</p>
+      </div>
+      <div class="own-books__container">
+        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
+        <p>Title</p>
+        <p>Author</p>
+        <p>Available/not</p>
+      </div>
+      <div class="own-books__container">
+        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
+        <p>Title</p>
+        <p>Author</p>
+        <p>Available/not</p>
+      </div>
+      <div class="own-books__container">
+        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
+        <p>Title</p>
+        <p>Author</p>
+        <p>Available/not</p>
+      </div>
+      <div class="own-books__container">
+        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
+        <p>Title</p>
+        <p>Author</p>
+        <p>Available/not</p>
+      </div>
+      <div class="own-books__container">
+        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
+        <p>Title</p>
+        <p>Author</p>
+        <p>Available/not</p>
+      </div>
+      <div class="own-books__container">
+        <img class="own-books__cover" src="../../assets/media/cover_example.jpg" alt="book cover">
+        <p>Title</p>
+        <p>Author</p>
+        <p>Available/not</p>
+      </div>
+    </div>
+  </section>
+</section>
+<app-footer></app-footer>
