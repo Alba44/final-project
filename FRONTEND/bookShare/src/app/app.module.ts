@@ -3,26 +3,29 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { LandingComponent } from './landing/landing.component'
-import { DashboardComponent } from './main/dashboard/dashboard.component'
-import { MainComponent } from './main/main.component'
-import { HeaderComponent } from './main/header/header.component'
-import { FooterComponent } from './main/footer/footer.component'
-import { ProfileComponent } from './main/profile/profile.component'
+import { DashboardComponent } from './dashboard/dashboard.component'
+import { HeaderComponent } from './header/header.component'
+import { FooterComponent } from './footer/footer.component'
+import { ProfileComponent } from './profile/profile.component'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     DashboardComponent,
-    MainComponent,
     HeaderComponent,
     FooterComponent,
     ProfileComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

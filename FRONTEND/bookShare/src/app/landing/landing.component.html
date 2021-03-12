@@ -1,6 +1,8 @@
 <div class="landing__container">
   <div class="landing__general">
+    <a routerLink="/dashboard">
     <img class="landing__logo" src="../../assets//media/Logo/logo_transparent_cropped.png" alt="BookShare logo">
+    </a>
     <p class="landing__subtitle">What are you looking for?</p>
     <div>
       <input class="landing__search-input" type="text">
@@ -15,7 +17,7 @@
       [ngClass]="{displayLogin: statusLogin, hideLogin: !statusLogin}">
       <input class="popup__login" type="text" placeholder="Email">
       <input class="popup__login" type="text" placeholder="Password">
-      <button class="popup__submit" type="submit">Submit</button>
+      <button class="popup__submit" type="submit" routerLink="/profile">Submit</button>
     </div>
     <div
       class="landing__popup-login hideRegister"
