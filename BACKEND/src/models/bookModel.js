@@ -2,10 +2,11 @@ const { Schema, model } = require('mongoose')
 
 const bookSchema = new Schema({
   title: String,
-  author: String,
-  publishYear: Number,
+  author_name: String,
+  first_publish_year: Number,
   description: String,
-  ISBN: Number,
+  covers: String,
+  isbn: Number,
   language: String,
   subject: String,
   timesBorrowed: Number,
