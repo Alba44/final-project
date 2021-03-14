@@ -8,6 +8,8 @@ $white: #F8F5F5;
 $white_input: #F4EBEB;
 $black: #252424;
 
+$baloo: 'Baloo 2', cursive;
+
 @mixin button($radius: 5) {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: $white_input;
@@ -28,6 +30,6 @@ $black: #252424;
 body{
   margin: 0;
   padding: 0;
-  font-family: 'Baloo 2', cursive;
+  font-family: $baloo;
   color: $black;
 }

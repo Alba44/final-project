@@ -19,4 +19,10 @@ export class BooksService {
       this.books$.next(data)
     })
   }
+
+  createBook (bookInfo) {
+    return this.http.post<Book>(this.booksURL, bookInfo).subscribe((answer) => {
+      console.log(answer)
+    })
+  }
 }
