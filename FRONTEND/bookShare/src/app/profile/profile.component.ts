@@ -57,4 +57,9 @@ export class ProfileComponent implements OnInit {
   endUpdatePic () {
     this.isPicUpdated = !this.isPicUpdated
   }
+
+  showNewBookDialog () {
+    const modalComp = document.getElementsByClassName('profile__dialog')[0]
+    modalComp.classList.add('display')
+  }
 }

@@ -1,0 +1,14 @@
+<dialog class="profile__dialog">
+      <h1>Create a new book for your library</h1>
+      <form #form="ngForm" class="dialog-form" (ngSubmit)="sendBookBack()" [formGroup]="bookFormInfo">
+          <input #info type="text" placeholder="Search by title or/and author">
+          <button type="button" class="profile__dialog-search" (click)="fetchAPI(info.value)">Search</button>
+          <input #title type="text" placeholder="Title" formControlName="title">
+          <input #author_name type="text" placeholder="Author" formControlName="author_name">
+          <input #first_publish_year type="text" placeholder="Publish year" formControlName="first_publish_year">
+          <textarea name="description" cols="5" rows="5" placeholder="Sinopsis"></textarea>
+          <input #covers type="text" formControlName="covers" placeholder="Book cover URL">
+          <button type="submit" class="profile__dialog-create">Create Book</button>
+          <button type="button" class="profile__dialog-create" (click)="closeDialog()">Cancel</button>
+      </form>
+</dialog>

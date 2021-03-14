@@ -43,7 +43,8 @@
   </section>
   <section class="profile__own-books">
     <h2 class="books__title">YOUR BOOKS</h2>
-    <button class="books__add--btn">
+    <app-modal></app-modal>
+    <button class="books__add--btn" (click)="showNewBookDialog()">
       <img class="books__add" src="../../assets/media/icons8-libro-abierto-64 (1).png" alt="add book icon">
     </button>
     <div class="books-display">
