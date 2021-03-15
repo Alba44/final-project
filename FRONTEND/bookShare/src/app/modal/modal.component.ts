@@ -1,6 +1,7 @@
+/* eslint-disable no-useless-constructor */
 import { HttpClient } from '@angular/common/http'
 import { Component, ElementRef, OnInit } from '@angular/core'
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { BooksService } from '../books.service'
 
 @Component({
@@ -9,12 +10,14 @@ import { BooksService } from '../books.service'
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  urlAPIBooks = 'http://openlibrary.org/search.json?q='
-  urlAPICover = 'https://openlibrary.org/books/'
+  urlAPISearch = 'http://openlibrary.org/search.json?q='
+  urlAPIBook = 'https://openlibrary.org/books/'
   urlCover = 'https://covers.openlibrary.org/b/id/'
-  coverKey
-  coverJSON
-  ultimateURL
+  urlNoImage = 'https://www.ourbookshelves.com/media/pic_folder/default_pic/default.png'
+  bookKey: string
+  bookJSON: any
+  coverString: string
+  coverPicURL: string
 
   searchedBookInfo
 
@@ -22,7 +25,6 @@ export class ModalComponent implements OnInit {
     title: new FormControl('', Validators.required),
     author_name: new FormControl('', Validators.required),
     first_publish_year: new FormControl('', Validators.required),
-    description: new FormControl(''),
     covers: new FormControl('')
   })
 
@@ -35,7 +37,7 @@ export class ModalComponent implements OnInit {
   }
 
   closeDialog () {
-    // hacer un post con la info
+    this.bookFormInfo.patchValue({})
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.remove('display')
   }
@@ -43,25 +45,26 @@ export class ModalComponent implements OnInit {
   fetchAPI (rawInfo) {
     const regex = /\s/ig
     const info = rawInfo.replaceAll(regex, '+')
-    return this.http.get(`${this.urlAPIBooks}${info}`).subscribe(data => {
+    return this.http.get(`${this.urlAPISearch}${info}`).subscribe(data => {
       this.searchedBookInfo = data
       this.bookFormInfo.patchValue(this.searchedBookInfo.docs[0])
-      this.coverKey = this.searchedBookInfo.docs[0].cover_edition_key
-      this.fetchAPICover()
+      this.bookKey = this.searchedBookInfo.docs[0].cover_i
+      this.fetchAPICover(this.bookKey)
     })
   }
 
-  fetchAPICover () {
-    return this.http.get(`${this.urlAPICover}${this.coverKey}.json`).subscribe(data => {
-      this.coverJSON = data
-      this.coverKey = this.coverJSON.covers[0]
-      this.ultimateURL = `${this.urlAPICover}${this.coverKey}-M.jpg`
-      this.bookFormInfo.patchValue(this.ultimateURL)
-    })
+  fetchAPICover (infoKey) {
+    if (infoKey === undefined || infoKey === null) {
+      this.bookFormInfo.controls.covers.setValue(this.urlNoImage)
+    } else {
+      this.coverPicURL = `${this.urlCover}${infoKey}-M.jpg`
+      this.bookFormInfo.controls.covers.setValue(this.coverPicURL)
+    }
   }
 
   sendBookBack () {
     this.booksService.createBook(this.bookFormInfo.value)
+    this.booksService.getAllBooks()
 
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.remove('display')

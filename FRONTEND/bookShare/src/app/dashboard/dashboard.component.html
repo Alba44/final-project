@@ -1,5 +1,53 @@
 <app-header></app-header>
 <main>
-<p>Dashboard works!</p>
+  <div class="false-nav-bar"></div>
+  <div class="book-slider-container">
+    <img class="book-slider" src="../../assets/media/12-cropped.jpg" alt="book expo">
+  </div>
+  <section class="dashboard__search">
+    <div class="search-tab">
+      <input class="search-input" type="text" placeholder="Title or author">
+      <button class="search-btn">Search</button>
+    </div>
+    <div class="search-checkbox">
+      <input id="title" type="radio" checked>
+      <label for="title">Title</label>
+      <input id="author" type="radio">
+      <label for="author">Author</label>
+    </div>
+  </section>
+  <section class="profile__own-books">
+    <h2 class="books__title">TOP LENT BOOKS</h2>
+    <div class="books-display">
+      <div class="own-books__container" *ngFor="let book of books">
+        <img class="own-books__cover" src={{book.covers}} alt="book cover">
+        <p>{{book.title}}</p>
+        <p>{{book.author_name}}</p>
+        <p>Available/not</p>
+      </div>
+    </div>
+  </section>
+  <section class="profile__own-books">
+    <h2 class="books__title">TOP FANTASY BOOKS</h2>
+    <div class="books-display">
+      <div class="own-books__container" *ngFor="let book of books">
+        <img class="own-books__cover" src={{book.covers}} alt="book cover">
+        <p>{{book.title}}</p>
+        <p>{{book.author_name}}</p>
+        <p>Available/not</p>
+      </div>
+    </div>
+  </section>
+  <section class="profile__own-books">
+    <h2 class="books__title">TOP HISTORICAL FICTION BOOKS</h2>
+    <div class="books-display">
+      <div class="own-books__container" *ngFor="let book of books">
+        <img class="own-books__cover" src={{book.covers}} alt="book cover">
+        <p>{{book.title}}</p>
+        <p>{{book.author_name}}</p>
+        <p>Available/not</p>
+      </div>
+    </div>
+  </section>
 </main>
 <app-footer></app-footer>

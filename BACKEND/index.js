@@ -6,7 +6,7 @@ const chalk = require('chalk')
 require('dotenv').config()
 const usersRouter = require('./src/routers/usersRouter')
 const booksRouter = require('./src/routers/booksRouter')
-// const authRouter = require('./src/routers/authRouter')
+const cors = require('cors')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -17,6 +17,7 @@ connect(DDBB, { useUnifiedTopology: true, useNewUrlParser: true })
 
 app.use(morgan('dev'))
 
+app.use(cors())
 app.use(express.json())
 
 // require('./src/passport')(app) // configuración serialize y deserialize

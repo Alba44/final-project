@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
+import { tap } from 'rxjs/operators'
 import { Book } from './model/Book'
 import { CONSTANTS } from '../assets/const'
 
@@ -21,8 +22,13 @@ export class BooksService {
   }
 
   createBook (bookInfo) {
-    return this.http.post<Book>(this.booksURL, bookInfo).subscribe((answer) => {
-      console.log(answer)
-    })
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this.http.post<Book>(this.booksURL, bookInfo, httpOptions).pipe(
+      tap()
+    ).subscribe()
   }
 }

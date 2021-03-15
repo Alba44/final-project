@@ -27,29 +27,7 @@
       color: $turquoise;
       font-size: 40px;
       font-weight: bold;
-    }
-
-    .landing__search-button{
-      width: 78px;
-      height: 35px;
-      background: #F4EBEB;
-      border: 0.5px solid #252424;
-      box-sizing: border-box;
-      border-radius: 5px;
-      margin-left: 10px;
-      font-size: 14px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      outline: none;
-    }
-
-    .landing__search-input{
-      width: 350px;
-      height: 35px;
-      background: #F4EBEB;
-      border: 0.5px solid #252424;
-      box-sizing: border-box;
-      border-radius: 5px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      cursor: default;
     }
   }
 
@@ -67,6 +45,7 @@
       margin-right: 10px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       outline: none;
+      cursor: pointer;
 
       &:hover{
         background-color: #ecdada;
@@ -83,6 +62,7 @@
       font-size: 14px;
       outline: none;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
 
       &:hover{
         background-color: #ecdada;
@@ -122,6 +102,7 @@
         font-size: 14px;
         outline: none;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
 
 
         &:hover{
