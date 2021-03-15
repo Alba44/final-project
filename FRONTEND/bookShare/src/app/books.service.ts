@@ -11,6 +11,8 @@ import { CONSTANTS } from '../assets/const'
 export class BooksService {
   booksURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.booksParams}`
   books$ = new BehaviorSubject<Book[]>([])
+  title$ = new BehaviorSubject<Book[]>([])
+  author$ = new BehaviorSubject<Book[]>([])
 
   // eslint-disable-next-line no-useless-constructor
   constructor (private http: HttpClient) { }
@@ -19,6 +21,14 @@ export class BooksService {
     return this.http.get<Book[]>(this.booksURL).subscribe((data) => {
       this.books$.next(data)
     })
+  }
+
+  setTitle (book) {
+    this.title$.next(book)
+  }
+
+  setAuthor (book) {
+    this.author$.next(book)
   }
 
   createBook (bookInfo) {

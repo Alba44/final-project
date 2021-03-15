@@ -4,20 +4,20 @@
   <section class="dashboard__search">
     <div class="search-tab">
       <input #searchField class="search-input" type="text" placeholder="Title or author">
-      <button class="search-btn" (click)="getBooks()">Search</button>
+      <button class="search-btn" (click)="searchBook(title, searchField.value)">Search</button>
+      <button class="search-btn" (click)="getBooks()">Advance search</button>
     </div>
     <div class="search-checkbox">
-      <input #title id="title" name="searchCondition" value="t" type="radio" checked>
+      <input #title id="title" name="searchCondition" type="radio" checked>
       <label for="title">Title</label>
-      <input #author id="author" name="searchCondition" value="a" type="radio">
+      <input #author id="author" name="searchCondition" type="radio">
       <label for="author">Author</label>
     </div>
   </section>
   <section class="profile__own-books">
     <h2 class="books__title">RESULTS</h2>
-    <div *ngIf="!this.booksListed"></div>
     <div class="books-display">
-      <div class="own-books__container" *ngFor="let book of books">
+      <div class="own-books__container" *ngFor="let book of searchedBookTitle">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
         <p>{{book.author_name}}</p>
