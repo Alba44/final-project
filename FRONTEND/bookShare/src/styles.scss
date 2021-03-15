@@ -16,6 +16,7 @@ $baloo: 'Baloo 2', cursive;
   border-radius: $radius;
   outline: none;
   cursor: pointer;
+  font-family: $baloo;
 }
 
 @mixin background{
