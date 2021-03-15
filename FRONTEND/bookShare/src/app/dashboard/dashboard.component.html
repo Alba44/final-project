@@ -2,11 +2,19 @@
 <main>
   <div class="false-nav-bar"></div>
   <div class="book-slider-container">
-    <img class="book-slider" src="../../assets/media/20.jpg" alt="book expo">
+    <img class="book-slider" src="../../assets/media/12-cropped.jpg" alt="book expo">
   </div>
-  <section>
-    <input type="text">
-    <button>Search</button>
+  <section class="dashboard__search">
+    <div class="search-tab">
+      <input class="search-input" type="text" placeholder="Title or author">
+      <button class="search-btn">Search</button>
+    </div>
+    <div class="search-checkbox">
+      <input id="title" type="radio" checked>
+      <label for="title">Title</label>
+      <input id="author" type="radio">
+      <label for="author">Author</label>
+    </div>
   </section>
   <section class="profile__own-books">
     <h2 class="books__title">TOP LENT BOOKS</h2>

@@ -7,10 +7,16 @@ import { BooksService } from '../books.service'
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  books = this.bookService.books$
+  books: any = this.bookService.books$
 
   constructor (private bookService: BooksService) {}
 
   ngOnInit (): void {
+    this.getBooks()
+  }
+
+  getBooks () {
+    this.bookService.getAllBooks() // .get del backend en el booksService
+    this.books.subscribe(data => { this.books = data })
   }
 }
