@@ -8,6 +8,8 @@ import { BooksService } from '../books.service'
 })
 export class DashboardComponent implements OnInit {
   books: any = this.bookService.books$
+  titleSearch
+  authorSearch
 
   constructor (private bookService: BooksService) {}
 
@@ -22,11 +24,11 @@ export class DashboardComponent implements OnInit {
 
   search (input, searchInput) {
     if (input.checked) {
-      const titleSearch = this.books.filter((book) => searchInput === book.title)
-      console.log(titleSearch)
+      this.titleSearch = this.books.filter((book) => searchInput === book.title)
+      this.bookService.setTitle(this.titleSearch)
     } else {
-      const authorSearch = this.books.filter((book) => searchInput.toUppercase() === book.author_name.toUppercase())
-      console.log(authorSearch)
+      this.authorSearch = this.books.filter((book) => searchInput === book.author_name)
+      this.bookService.setAuthor(this.authorSearch)
     }
   }
 }
