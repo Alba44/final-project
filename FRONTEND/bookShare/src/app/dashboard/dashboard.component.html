@@ -6,13 +6,13 @@
   </div>
   <section class="dashboard__search">
     <div class="search-tab">
-      <input class="search-input" type="text" placeholder="Title or author">
-      <button class="search-btn">Search</button>
+      <input #searchField class="search-input" type="text" placeholder="Title or author">
+      <button class="search-btn" routerLink="/search" (click)="search(title, searchField.value)">Search</button>
     </div>
     <div class="search-checkbox">
-      <input id="title" type="radio" checked>
+      <input #title id="title" name="searchCondition" value="t" type="radio" checked>
       <label for="title">Title</label>
-      <input id="author" type="radio">
+      <input #author id="author" name="searchCondition" value="a" type="radio">
       <label for="author">Author</label>
     </div>
   </section>

@@ -16,8 +16,6 @@ export class ProfileComponent implements OnInit {
   isPicUpdated: Boolean = false
   updatePicInput = new FormControl('')
 
-  alternativeBookCover: string = 'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png'
-
   updateDetails: FormGroup
 
   constructor (

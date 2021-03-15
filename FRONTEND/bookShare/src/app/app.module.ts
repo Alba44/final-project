@@ -10,7 +10,8 @@ import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
 import { ProfileComponent } from './profile/profile.component'
 import { HttpClientModule } from '@angular/common/http'
-import { ModalComponent } from './modal/modal.component'
+import { ModalComponent } from './modal/modal.component';
+import { SearchListComponent } from './search-list/search-list.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ModalComponent } from './modal/modal.component'
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
-    ModalComponent
+    ModalComponent,
+    SearchListComponent
   ],
   imports: [
     BrowserModule,
