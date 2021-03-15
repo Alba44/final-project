@@ -5,7 +5,7 @@
       <div class="profile__picture-frame">
         <img class="profile__picture" src="../../assets/media/394-3947083_round-profile-picture-png-transparent-png.png" alt="profile"/>
       </div>
-      <button class="profile__picture-update" [ngClass]="{hide: isPicUpdated, display: !isPicUpdated}" (click)="startUpdatePic()">Update profile pic</button>
+      <button class="profile__picture-update" [ngClass]="{hide: isPicUpdated, display: !isPicUpdated}" (click)="openUpdateInput()">Update profile pic</button>
       <div class="picture-update" [ngClass]="{display: isPicUpdated, hide: !isPicUpdated}">
         <input class="picture-update-input" type="file" accept="image/*">
         <button class="picture-update-btn">Update</button>
@@ -51,7 +51,7 @@
       <div class="own-books__container" *ngFor="let book of books">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
-        <p>{{book.authorName}}</p>
+        <p>{{book.author_name}}</p>
         <p>Available/not</p>
       </div>
     </div>
@@ -62,7 +62,7 @@
       <div class="own-books__container" *ngFor="let book of books">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
-        <p>{{book.authorName}}</p>
+        <p>{{book.author_name}}</p>
         <p>Available/not</p>
       </div>
     </div>

@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
     return this.updateDetails.get('password')
   }
 
-  startUpdatePic () {
+  openUpdateInput () {
     this.isPicUpdated = !this.isPicUpdated
   }
 

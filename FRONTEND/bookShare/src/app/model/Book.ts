@@ -1,6 +1,6 @@
 export interface Book {
   lender: [],
   title: string,
-  authorName: string,
-  firstPublishYear: Number
+  authorName: string[],
+  firstPublishYear: number
 }
