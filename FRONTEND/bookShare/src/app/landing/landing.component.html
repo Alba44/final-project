@@ -9,19 +9,20 @@
   <div class="landing__register-signIn">
     <button class="landing__signIn" type="button" (click)="changeClassLogin()">Sign in</button>
     <button class="landing__register" type="button" (click)="changeClassRegister()">Sign up</button>
-    <div
+    <form
       class="landing__popup-login hideLogin"
       [ngClass]="{displayLogin: statusLogin, hideLogin: !statusLogin}">
-      <input class="popup__login" type="text" placeholder="Email">
-      <input class="popup__login" type="text" placeholder="Password">
-      <button class="popup__submit" type="submit" routerLink="/profile">Submit</button>
-    </div>
-    <div
+      <input class="popup__login" type="email" placeholder="Email">
+      <input class="popup__login" type="password" placeholder="Password" >
+      <button class="popup__submit" type="button">Submit</button>
+    </form>
+    <form
       class="landing__popup-login hideRegister"
-      [ngClass]="{displayRegister: statusRegister, hideRegister: !statusRegister}">
-      <input class="popup__login" type="text" placeholder="Email">
-      <input class="popup__login" type="text" placeholder="Password">
-      <button class="popup__submit" type="submit">Register</button>
-    </div>
+      [ngClass]="{displayRegister: statusRegister, hideRegister: !statusRegister}"
+      [formGroup]="registerForm">
+      <input class="popup__login" type="email" placeholder="Email" formControlName="email">
+      <input class="popup__login" type="password" placeholder="Password" formControlName="password">
+      <button class="popup__submit" type="button" routerLink="/profile" (click)="sendLoginInfo()">Register</button>
+    </form>
   </div>
 </div>
