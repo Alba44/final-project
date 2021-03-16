@@ -12,7 +12,7 @@ function authRouter () {
   router
     .route('/login')
     .post(
-      passport.authenticate('local'),
+      passport.authenticate('local'), // middleware y nombre de la estrategia
       login
     )
 

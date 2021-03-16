@@ -25,10 +25,10 @@ function authControllers () {
     res.json(req.body)
   }
 
-  return (
+  return {
     register,
     login
-  )
+  }
 }
 
 module.exports = authControllers()
