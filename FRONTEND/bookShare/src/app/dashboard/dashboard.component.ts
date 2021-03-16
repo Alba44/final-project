@@ -24,10 +24,10 @@ export class DashboardComponent implements OnInit {
 
   search (input, searchInput) {
     if (input.checked) {
-      this.titleSearch = this.books.filter((book) => searchInput === book.title)
+      this.titleSearch = this.books.filter((book) => searchInput.toUpperCase() === book.title.toUpperCase())
       this.bookService.setTitle(this.titleSearch)
     } else {
-      this.authorSearch = this.books.filter((book) => searchInput === book.author_name)
+      this.authorSearch = this.books.filter((book) => searchInput.toUpperCase() === book.author_name[0].toUpperCase())
       this.bookService.setAuthor(this.authorSearch)
     }
   }
