@@ -9,6 +9,7 @@ import { BooksService } from '../books.service'
 export class SearchListComponent implements OnInit {
   books: any = this.bookService.books$
   searchedBookTitle: any = this.bookService.title$
+  searchedBookAuthor: any = this.bookService.author$
   searchByTitle
   searchByAuthor
 
@@ -26,14 +27,15 @@ export class SearchListComponent implements OnInit {
 
   getSearchedBookFromDashboard () {
     this.searchedBookTitle.subscribe(data => { this.searchedBookTitle = data })
+    this.searchedBookAuthor.subscribe(data => { this.searchedBookAuthor = data })
   }
 
   searchBook (input, searchInput) {
     if (input.checked) {
-      this.searchByTitle = this.books.filter((book) => searchInput === book.title)
+      this.searchByTitle = this.books.filter((book) => searchInput.toUpperCase() === book.title.toUpperCase())
       this.bookService.setTitle(this.searchByTitle)
     } else {
-      this.searchByAuthor = this.books.filter((book) => searchInput === book.author_name)
+      this.searchByAuthor = this.books.filter((book) => searchInput.toUpperCase() === book.author_name[0].toUpperCase())
       this.bookService.setAuthor(this.searchByAuthor)
     }
   }

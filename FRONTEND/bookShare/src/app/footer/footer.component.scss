@@ -5,6 +5,8 @@ footer{
   background-color: $white;
   display: flex;
   justify-content: center;
+  position: relative;
+  bottom: 0;
 
   .footer__container{
     width: 85%;
