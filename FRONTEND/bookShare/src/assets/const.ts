@@ -2,5 +2,6 @@ export const CONSTANTS = {
   urlDDBB: 'http://localhost:5000',
   usersParams: '/api/users',
   booksParams: '/api/books',
-  authRegisterParams: '/authenticate/register'
+  authRegisterParams: '/authenticate/register',
+  authLoginParams: '/authenticate/login'
 }

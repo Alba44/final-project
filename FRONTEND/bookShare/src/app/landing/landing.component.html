@@ -11,10 +11,11 @@
     <button class="landing__register" type="button" (click)="changeClassRegister()">Sign up</button>
     <form
       class="landing__popup-login hideLogin"
-      [ngClass]="{displayLogin: statusLogin, hideLogin: !statusLogin}">
-      <input class="popup__login" type="email" placeholder="Email">
-      <input class="popup__login" type="password" placeholder="Password" >
-      <button class="popup__submit" type="button">Submit</button>
+      [ngClass]="{displayLogin: statusLogin, hideLogin: !statusLogin}"
+      [formGroup]="loginForm">
+      <input class="popup__login" type="email" placeholder="Email" formControlName="email">
+      <input class="popup__login" type="password" placeholder="Password" formControlName="password">
+      <button class="popup__submit" type="button" routerLink="/profile" (click)="sendLoginInfo()">Submit</button>
     </form>
     <form
       class="landing__popup-login hideRegister"
@@ -22,7 +23,7 @@
       [formGroup]="registerForm">
       <input class="popup__login" type="email" placeholder="Email" formControlName="email">
       <input class="popup__login" type="password" placeholder="Password" formControlName="password">
-      <button class="popup__submit" type="button" routerLink="/profile" (click)="sendLoginInfo()">Register</button>
+      <button class="popup__submit" type="button" routerLink="/profile" (click)="sendRegisterInfo()">Register</button>
     </form>
   </div>
 </div>

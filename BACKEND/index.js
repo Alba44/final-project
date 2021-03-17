@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const debug = require('debug')('app')
 const { connect } = require('mongoose')
+const session = require('express-session')
 const chalk = require('chalk')
 require('dotenv').config()
 const usersRouter = require('./src/routers/usersRouter')
@@ -20,6 +21,11 @@ app.use(morgan('dev'))
 
 app.use(cors())
 app.use(express.json())
+app.use(session({
+  secret: 'bookShare',
+  resave: true, // en cada peticion, aunque la sesión no haya sido modificada, se va a volver a guardar
+  saveUninitialized: true // si inicializamos una sesión en una peticion y no le guardamos nada, igual se guarda
+}))
 
 require('./src/passport')(app) // configuración serialize y deserialize
 

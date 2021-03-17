@@ -8,14 +8,19 @@ import { CONSTANTS } from '../assets/const'
   providedIn: 'root'
 })
 export class AuthService {
-  authURL = `${CONSTANTS.urlDDBB}${CONSTANTS.authRegisterParams}`
+  authRegisterURL = `${CONSTANTS.urlDDBB}${CONSTANTS.authRegisterParams}`
+  authLoginURL = `${CONSTANTS.urlDDBB}${CONSTANTS.authLoginParams}`
   loggedUser$ = new BehaviorSubject<User[]>([])
 
   constructor (private http: HttpClient) { }
 
+  registerFront (registerInfo) {
+    return this.http.post<User>(this.authRegisterURL, registerInfo).subscribe()
+  }
+
   loginFront (loginInfo) {
     console.log('en el service', loginInfo)
-    return this.http.post<User>(this.authURL, loginInfo).subscribe()
+    return this.http.post<User>(this.authLoginURL, loginInfo).subscribe()
   }
 
   // isAuthenticated (): Boolean {

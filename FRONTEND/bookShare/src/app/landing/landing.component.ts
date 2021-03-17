@@ -16,14 +16,24 @@ export class LandingComponent implements OnInit {
     password: new FormControl('', Validators.required)
   })
 
+  loginForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  })
+
   constructor (private authService: AuthService) {}
 
   ngOnInit (): void {
   }
 
-  sendLoginInfo () {
+  sendRegisterInfo () {
     console.log('en el comp', this.registerForm.value)
-    this.authService.loginFront(this.registerForm.value)
+    this.authService.registerFront(this.registerForm.value)
+  }
+
+  sendLoginInfo () {
+    console.log('en el comp', this.loginForm.value)
+    this.authService.loginFront(this.loginForm.value)
   }
 
   changeClassLogin () {

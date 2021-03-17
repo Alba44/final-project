@@ -13,6 +13,7 @@ function LocalStrategy () {
         User.findOne({ email }, (error, user) => {
           if (error) { return done(error) }
           if (!user) {
+            console.log('Incorrect email')
             return done(null, false, { message: 'Incorrect email' }) // no hay error, pero no se encuentra el usuario
           }
           if (!user.validPassword(password)) {
