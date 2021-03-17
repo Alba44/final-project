@@ -5,11 +5,7 @@
       <div class="profile__picture-frame">
         <img class="profile__picture" src="../../assets/media/394-3947083_round-profile-picture-png-transparent-png.png" alt="profile"/>
       </div>
-      <button class="profile__picture-update" [ngClass]="{hide: isPicUpdated, display: !isPicUpdated}" (click)="openUpdateInput()">Update profile pic</button>
-      <div class="picture-update" [ngClass]="{display: isPicUpdated, hide: !isPicUpdated}">
-        <input class="picture-update-input" type="file" accept="image/*">
-        <button class="picture-update-btn">Update</button>
-      </div>
+      <button class="profile__picture-update" >Update profile pic</button>
     </div>
     <article class="profile__details-container">
       <form class="profile__details-form" [formGroup]="updateDetails">
@@ -29,9 +25,6 @@
         <input id="email" type="email" formControlName="email"/>
         <label for="password">Password:</label>
         <input id="password" type="password" formControlName="password"/>
-        <span *ngIf="passwordControl.hasError('minLength')">
-          Must have minimum {{passwordControl.getError("minLength").requiredLength}} characters
-        </span>
         <br>
 
       </form>

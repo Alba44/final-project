@@ -44,18 +44,6 @@ export class ProfileComponent implements OnInit {
     this.books.subscribe(data => { this.books = data })
   }
 
-  get passwordControl () {
-    return this.updateDetails.get('password')
-  }
-
-  openUpdateInput () {
-    this.isPicUpdated = !this.isPicUpdated
-  }
-
-  endUpdatePic () {
-    this.isPicUpdated = !this.isPicUpdated
-  }
-
   showNewBookDialog () {
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.add('display')
