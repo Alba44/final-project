@@ -14,4 +14,8 @@ const userSchema = new Schema({
   borrowedBooks: Number
 })
 
+userSchema.methods.validPassword = function validPassword (pwd) {
+  return this.password === (pwd)
+}
+
 module.exports = model('User', userSchema)
