@@ -15,26 +15,14 @@
   </section>
   <section class="profile__own-books">
     <h2 class="books__title">RESULTS</h2>
-    <div *ngIf="title.checked || searchedBookTitle === undefined; else elseBlock">
-      <div class="books-display" >
-        <div class="own-books__container" *ngFor="let book of searchedBookTitle">
-          <img class="own-books__cover" src={{book.covers}} alt="book cover">
-          <p>{{book.title}}</p>
-          <p>{{book.author_name}}</p>
-          <p>Available/not</p>
-        </div>
+    <div class="books-display" >
+      <div class="own-books__container" *ngFor="let book of books$ | async">
+        <img class="own-books__cover" src={{book.covers}} alt="book cover">
+        <p>{{book.title}}</p>
+        <p>{{book.author_name}}</p>
+        <p>Available/not</p>
       </div>
     </div>
-    <ng-template #elseBlock>
-      <div class="books-display">
-        <div class="own-books__container" *ngFor="let book of searchedBookAuthor">
-          <img class="own-books__cover" src={{book.covers}} alt="book cover">
-          <p>{{book.title}}</p>
-          <p>{{book.author_name}}</p>
-          <p>Available/not</p>
-        </div>
-      </div>
-    </ng-template>
   </section>
 </main>
 <app-footer></app-footer>

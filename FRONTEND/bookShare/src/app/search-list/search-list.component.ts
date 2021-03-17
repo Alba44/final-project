@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Subject } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 import { BooksService } from '../books.service'
 
 @Component({
@@ -7,36 +9,21 @@ import { BooksService } from '../books.service'
   styleUrls: ['./search-list.component.scss']
 })
 export class SearchListComponent implements OnInit {
-  books: any = this.bookService.books$
-  searchedBookTitle: any = this.bookService.title$
-  searchedBookAuthor: any = this.bookService.author$
   searchByTitle
   searchByAuthor
+  searchTerm$ = new Subject();
+  books$ = this.searchTerm$
+    .pipe(
+      switchMap((search: any) => this.bookService.filterBooks(search))
+    );
 
   constructor (private bookService: BooksService) {}
 
   ngOnInit (): void {
-    this.getSearchedBookFromDashboard()
-    this.getBooks()
+    this.bookService.books$.subscribe()
   }
 
-  getBooks () {
-    this.bookService.getAllBooks() // .get del backend en el booksService
-    this.books.subscribe(data => { this.books = data })
-  }
-
-  getSearchedBookFromDashboard () {
-    this.searchedBookTitle.subscribe(data => { this.searchedBookTitle = data })
-    this.searchedBookAuthor.subscribe(data => { this.searchedBookAuthor = data })
-  }
-
-  searchBook (input, searchInput) {
-    if (input.checked) {
-      this.searchByTitle = this.books.filter((book) => searchInput.toUpperCase() === book.title.toUpperCase())
-      this.bookService.setTitle(this.searchByTitle)
-    } else {
-      this.searchByAuthor = this.books.filter((book) => searchInput.toUpperCase() === book.author_name[0].toUpperCase())
-      this.bookService.setAuthor(this.searchByAuthor)
-    }
+  searchBook (input, term) {
+    this.searchTerm$.next({ term, input })
   }
 }

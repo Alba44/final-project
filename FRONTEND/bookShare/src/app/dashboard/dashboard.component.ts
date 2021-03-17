@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Subject } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 import { BooksService } from '../books.service'
 
 @Component({
@@ -11,24 +13,19 @@ export class DashboardComponent implements OnInit {
   titleSearch
   authorSearch
 
+  searchTerm$ = new Subject();
+  books$ = this.searchTerm$
+    .pipe(
+      switchMap((search: any) => this.bookService.filterBooks(search))
+    );
+
   constructor (private bookService: BooksService) {}
 
   ngOnInit (): void {
-    this.getBooks()
+    this.bookService.getAllBooks()
   }
 
-  getBooks () {
-    this.bookService.getAllBooks() // .get del backend en el booksService
-    this.books.subscribe(data => { this.books = data })
-  }
-
-  search (input, searchInput) {
-    if (input.checked) {
-      this.titleSearch = this.books.filter((book) => searchInput.toUpperCase() === book.title.toUpperCase())
-      this.bookService.setTitle(this.titleSearch)
-    } else {
-      this.authorSearch = this.books.filter((book) => searchInput.toUpperCase() === book.author_name[0].toUpperCase())
-      this.bookService.setAuthor(this.authorSearch)
-    }
+  search (input, term) {
+    this.searchTerm$.next({ term, input })
   }
 }
