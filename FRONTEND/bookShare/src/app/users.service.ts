@@ -17,4 +17,8 @@ export class UsersService {
   getUsers () {
     return this.http.get<User[]>(this.usersURL)
   }
+
+  updateUser (newUserInfo) {
+    return this.http.put<User>(this.usersURL, newUserInfo).subscribe()
+  }
 }
