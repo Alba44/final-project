@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../auth.service'
 
 @Component({
@@ -27,12 +27,10 @@ export class LandingComponent implements OnInit {
   }
 
   sendRegisterInfo () {
-    console.log('en el comp', this.registerForm.value)
     this.authService.registerFront(this.registerForm.value)
   }
 
   sendLoginInfo () {
-    console.log('en el comp', this.loginForm.value)
     this.authService.loginFront(this.loginForm.value)
   }
 
