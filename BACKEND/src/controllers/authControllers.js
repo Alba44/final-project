@@ -15,20 +15,22 @@ function authControllers () {
         res.redirect('/api/users')
       })
     } catch (error) {
+      console.log('Error register')
       res.status(500)
       res.send(error)
     }
   }
 
   function login (req, res) {
+    console.log('logued!')
     res.status(200)
     res.json(req.body)
   }
 
-  return (
+  return {
     register,
     login
-  )
+  }
 }
 
 module.exports = authControllers()
