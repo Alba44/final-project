@@ -12,11 +12,12 @@ import { UsersService } from '../users.service'
 export class ProfileComponent implements OnInit {
   users = this.usersService.users$
   books: any = this.booksService.books$
+  loggedUser
 
   isPicUpdated: Boolean = false
   updatePicInput = new FormControl('')
 
-  updateDetails: FormGroup
+  updateDetailsForm: FormGroup
 
   constructor (
     private usersService: UsersService,
@@ -24,16 +25,18 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit (): void {
-    this.updateDetails = new FormGroup({
+    this.updateDetailsForm = new FormGroup({
       nickname: new FormControl(''),
       name: new FormControl('', Validators.required),
       dob: new FormControl(''),
+      city: new FormControl(''),
       email: new FormControl('', (Validators.email, Validators.required)),
       password: new FormControl('', (Validators.required, Validators.minLength(8)))
     })
 
     this.usersService.getUsers().subscribe((answer) => {
-      this.updateDetails.patchValue(answer[1])
+      this.loggedUser = answer[0]
+      this.updateDetailsForm.patchValue(answer[0])
     })
 
     this.getBooks()
@@ -47,5 +50,9 @@ export class ProfileComponent implements OnInit {
   showNewBookDialog () {
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.add('display')
+  }
+
+  updateDetails (formInfo) {
+    this.usersService.updateUser(formInfo) // hacer put al back con la info updated
   }
 }
