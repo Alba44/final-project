@@ -10,8 +10,6 @@ import { BooksService } from '../books.service'
 })
 export class DashboardComponent implements OnInit {
   books: any = this.bookService.books$
-  titleSearch
-  authorSearch
 
   searchTerm$ = new Subject();
   books$ = this.searchTerm$
@@ -26,6 +24,8 @@ export class DashboardComponent implements OnInit {
   }
 
   search (input, term) {
+    this.bookService.termSearch = term
+    this.bookService.radioSearch = input
     this.searchTerm$.next({ term, input })
   }
 }

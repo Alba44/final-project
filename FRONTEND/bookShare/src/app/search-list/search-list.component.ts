@@ -9,8 +9,6 @@ import { BooksService } from '../books.service'
   styleUrls: ['./search-list.component.scss']
 })
 export class SearchListComponent implements OnInit {
-  searchByTitle
-  searchByAuthor
   searchTerm$ = new Subject();
   books$ = this.searchTerm$
     .pipe(
@@ -20,7 +18,7 @@ export class SearchListComponent implements OnInit {
   constructor (private bookService: BooksService) {}
 
   ngOnInit (): void {
-    this.bookService.books$.subscribe()
+
   }
 
   searchBook (input, term) {

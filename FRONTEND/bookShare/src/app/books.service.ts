@@ -13,6 +13,8 @@ export class BooksService {
   urlAPISearch = 'http://openlibrary.org/search.json?q='
 
   books$ = new BehaviorSubject<Book[]>([])
+  termSearch
+  radioSearch
 
   constructor (private http: HttpClient) { }
 
