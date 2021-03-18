@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, ElementRef, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { BooksService } from '../books.service'
+import { BooksService } from 'src/app/services/books.service'
 
 @Component({
   selector: 'app-modal',

@@ -1,7 +1,8 @@
-  @import "../../styles.scss";
+@import "../../../styles.scss";
 
-  main{
+main{
   @include background;
+  height: 65vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,20 +11,6 @@
       width: 100%;
       height: 25px;
       background-color: $turquoise;
-    }
-
-    .book-slider-container{
-      width: 80%;
-      display: flex;
-      justify-content: center;
-
-      .book-slider{
-        width: 80%;
-
-        @include media(600px){
-          width: 100%
-        }
-      }
     }
 
     /*--------SEARCH----------*/
@@ -57,7 +44,8 @@
           background-color: $turquoise;
           border: 0;
           height: 40px;
-          width: 100px;
+          width: 150px;
+          margin-right: 20px;
         }
       }
 
@@ -71,6 +59,7 @@
     /*--------BOOKS----------*/
     .profile__own-books{
       width: 85%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       margin-left: 30px;
@@ -82,53 +71,11 @@
         margin-bottom: 0;
       }
 
-      .books__add--btn{
-        align-self: flex-end;
-        border: 0;
-        background: none;
-        outline: none;
-        cursor: pointer;
-
-        .books__add{
-          width: 50px;
-
-          @include media(600px){
-            width: 40px;
-          }
-        }
-      }
-
       .books-display{
         display: flex;
         margin-top: 20px;
         margin-bottom: 20px;
-        overflow-x: hidden;
-
-        &:hover{
-          overflow-x: auto;
-        }
-
-        &::-webkit-scrollbar {
-          width: 20px;
-          height: 5px;
-        }
-
-        /* Track */
-        &::-webkit-scrollbar-track {
-          box-shadow: inset 0 0 5px rgb(190, 190, 190);
-          border-radius: 8px;
-        }
-
-        /* Handle */
-        &::-webkit-scrollbar-thumb {
-          background: $rose;
-          border-radius: 8px;
-        }
-
-        /* Handle on hover */
-        &::-webkit-scrollbar-thumb:hover {
-          background: $red;
-        }
+        flex-wrap: wrap;
 
         .own-books__container{
           margin-right: 30px;
@@ -146,14 +93,14 @@
             text-align: center;
             font-size: 16px;
           }
-        }
 
-        .own-books__cover{
-          width: 140px;
-          height: 190px;
-          margin-bottom: 10px;
+          .own-books__cover{
+            width: 140px;
+            height: 190px;
+            margin-bottom: 10px;
+          }
         }
       }
-    }
-  }
 
+    }
+}

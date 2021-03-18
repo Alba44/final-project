@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { LandingComponent } from './landing/landing.component'
-import { DashboardComponent } from './dashboard/dashboard.component'
-import { ProfileComponent } from './profile/profile.component'
-import { SearchListComponent } from './search-list/search-list.component'
-// import { AuthGuardService as AuthGuard } from './auth-guard.service'
+import { LandingComponent } from './components/landing/landing.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component'
+import { ProfileComponent } from './components/profile/profile.component'
+import { SearchListComponent } from './components/search-list/search-list.component'
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service'
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'search', component: SearchListComponent }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'search', component: SearchListComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({

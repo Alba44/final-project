@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
 import { tap } from 'rxjs/operators'
-import { Book } from './model/Book'
-import { CONSTANTS } from '../assets/const'
+import { CONSTANTS } from '../../assets/const'
+import { Book } from '../models/Book'
 
 @Injectable({
   providedIn: 'root'
