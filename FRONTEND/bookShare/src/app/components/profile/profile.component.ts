@@ -30,13 +30,14 @@ export class ProfileComponent implements OnInit {
     this.updateDetailsForm = new FormGroup({
       nickname: new FormControl(''),
       name: new FormControl('', Validators.required),
-      dob: new FormControl(''),
+      DOB: new FormControl(''),
       city: new FormControl(''),
       email: new FormControl('', (Validators.email, Validators.required)),
       password: new FormControl('', (Validators.required, Validators.minLength(8)))
     })
 
     this.authService.loggedUser$.subscribe((data) => {
+      console.log('esto es data', data)
       this.updateDetailsForm.patchValue(data)
     })
 
@@ -54,6 +55,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateDetails (formInfo) {
+    console.log(formInfo)
     this.usersService.updateUser(formInfo) // hacer put al back con la info updated
   }
 }
