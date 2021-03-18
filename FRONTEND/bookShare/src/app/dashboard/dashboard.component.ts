@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core'
+import { FormBuilder, Validators } from '@angular/forms'
+import { Subject } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 import { BooksService } from '../books.service'
 
 @Component({
@@ -8,27 +11,26 @@ import { BooksService } from '../books.service'
 })
 export class DashboardComponent implements OnInit {
   books: any = this.bookService.books$
-  titleSearch
-  authorSearch
 
-  constructor (private bookService: BooksService) {}
+  filterForm = this.fb.group({
+    searchBy: ['title', Validators.required]
+  })
+
+  searchTerm$ = new Subject();
+  books$ = this.searchTerm$
+    .pipe(
+      switchMap((search: any) => this.bookService.filterBooks(search))
+    ).subscribe();
+
+  constructor (private bookService: BooksService, private fb: FormBuilder) {}
 
   ngOnInit (): void {
-    this.getBooks()
+    this.bookService.getAllBooks()
   }
 
-  getBooks () {
-    this.bookService.getAllBooks() // .get del backend en el booksService
-    this.books.subscribe(data => { this.books = data })
-  }
-
-  search (input, searchInput) {
-    if (input.checked) {
-      this.titleSearch = this.books.filter((book) => searchInput.toUpperCase() === book.title.toUpperCase())
-      this.bookService.setTitle(this.titleSearch)
-    } else {
-      this.authorSearch = this.books.filter((book) => searchInput.toUpperCase() === book.author_name[0].toUpperCase())
-      this.bookService.setAuthor(this.authorSearch)
-    }
+  search ({ searchBy }, term) {
+    // eslint-disable-next-line no-debugger
+    debugger
+    this.searchTerm$.next({ term, searchBy })
   }
 }

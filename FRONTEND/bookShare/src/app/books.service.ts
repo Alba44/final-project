@@ -1,7 +1,8 @@
+/* eslint-disable no-debugger */
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
-import { tap } from 'rxjs/operators'
+import { map, tap } from 'rxjs/operators'
 import { Book } from './model/Book'
 import { CONSTANTS } from '../assets/const'
 
@@ -10,25 +11,14 @@ import { CONSTANTS } from '../assets/const'
 })
 export class BooksService {
   booksURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.booksParams}`
-  books$ = new BehaviorSubject<Book[]>([])
-  title$ = new BehaviorSubject<Book[]>([])
-  author$ = new BehaviorSubject<Book[]>([])
+  urlAPISearch = 'http://openlibrary.org/search.json?q='
 
-  // eslint-disable-next-line no-useless-constructor
+  books$ = new BehaviorSubject<Book[]>([])
+
   constructor (private http: HttpClient) { }
 
   getAllBooks () {
-    return this.http.get<Book[]>(this.booksURL).subscribe((data) => {
-      this.books$.next(data)
-    })
-  }
-
-  setTitle (book) {
-    this.title$.next(book)
-  }
-
-  setAuthor (book) {
-    this.author$.next(book)
+    return this.http.get<Book[]>(this.booksURL).subscribe((data) => this.books$.next(data))
   }
 
   createBook (bookInfo) {
@@ -40,5 +30,23 @@ export class BooksService {
     return this.http.post<Book>(this.booksURL, bookInfo, httpOptions).pipe(
       tap()
     ).subscribe()
+  }
+
+  filterBooks ({ term, searchBy }) {
+    debugger
+    return this.http.get<Book[]>(this.booksURL)
+      .pipe(
+        map(books => books.filter(book => {
+          debugger
+          return Array.isArray(book[searchBy])
+            ? book[searchBy].find(field => field.toLowerCase() === term.toLowerCase())
+            : book[searchBy].toLowerCase() === term.toLowerCase()
+        })),
+        tap(books => this.books$.next(books))
+      )
+  }
+
+  fetchAPI (searchInput) {
+    return this.http.get(`${this.urlAPISearch}${searchInput}`)
   }
 }
