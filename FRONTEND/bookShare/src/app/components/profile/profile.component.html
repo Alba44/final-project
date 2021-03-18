@@ -5,7 +5,7 @@
       <div class="profile__picture-frame">
         <img class="profile__picture" src="../../assets/media/394-3947083_round-profile-picture-png-transparent-png.png" alt="profile"/>
       </div>
-      <button class="profile__picture-update" >Update profile pic</button>
+      <button class="profile__picture-update" (click)="updateDetails(updateDetailsForm.value)">Update profile pic</button>
     </div>
     <article class="profile__details-container">
       <form class="profile__details-form" [formGroup]="updateDetailsForm">
@@ -19,8 +19,8 @@
         <input id="nickname" type="text" formControlName="nickname"/>
         <label for="name">Name:</label>
         <input id="name" type="text" formControlName="name"/>
-        <label for="dob">Date of birth:</label>
-        <input id="dob" type="text" formControlName="dob"/>
+        <label for="DOB">Date of birth:</label>
+        <input id="DOB" type="text" formControlName="DOB"/>
         <label for="city">City:</label>
         <input id="city" type="text" formControlName="city"/>
         <label for="email">Email:</label>
