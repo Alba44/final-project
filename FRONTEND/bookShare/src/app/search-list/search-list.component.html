@@ -4,14 +4,14 @@
   <section class="dashboard__search">
     <div class="search-tab">
       <input #searchField class="search-input" type="text" placeholder="Title or author">
-      <button class="search-btn" (click)="searchBook(title, searchField.value)">Search</button>
+      <button class="search-btn" (click)="searchBook(filterForm.value, searchField.value)">Search</button>
     </div>
-    <div class="search-checkbox">
-      <input #title id="title" name="searchCondition" type="radio">
+    <form class="search-checkbox" [formGroup]="filterForm">
+      <input formControlName="searchBy" name="searchCondition" type="radio" value="title" checked>
       <label for="title">Title</label>
-      <input #author id="author" name="searchCondition" type="radio">
+      <input formControlName="searchBy" name="searchCondition" type="radio" value="author_name">
       <label for="author">Author</label>
-    </div>
+    </form>
   </section>
   <section class="profile__own-books">
     <h2 class="books__title">RESULTS</h2>

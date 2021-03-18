@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { FormBuilder, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { BooksService } from '../books.service'
@@ -11,21 +12,25 @@ import { BooksService } from '../books.service'
 export class DashboardComponent implements OnInit {
   books: any = this.bookService.books$
 
+  filterForm = this.fb.group({
+    searchBy: ['title', Validators.required]
+  })
+
   searchTerm$ = new Subject();
   books$ = this.searchTerm$
     .pipe(
       switchMap((search: any) => this.bookService.filterBooks(search))
-    );
+    ).subscribe();
 
-  constructor (private bookService: BooksService) {}
+  constructor (private bookService: BooksService, private fb: FormBuilder) {}
 
   ngOnInit (): void {
     this.bookService.getAllBooks()
   }
 
-  search (input, term) {
-    this.bookService.termSearch = term
-    this.bookService.radioSearch = input
-    this.searchTerm$.next({ term, input })
+  search ({ searchBy }, term) {
+    // eslint-disable-next-line no-debugger
+    debugger
+    this.searchTerm$.next({ term, searchBy })
   }
 }

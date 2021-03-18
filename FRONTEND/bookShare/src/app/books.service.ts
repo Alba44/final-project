@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
@@ -13,8 +14,6 @@ export class BooksService {
   urlAPISearch = 'http://openlibrary.org/search.json?q='
 
   books$ = new BehaviorSubject<Book[]>([])
-  termSearch
-  radioSearch
 
   constructor (private http: HttpClient) { }
 
@@ -33,14 +32,17 @@ export class BooksService {
     ).subscribe()
   }
 
-  filterBooks ({ term, input }) {
+  filterBooks ({ term, searchBy }) {
+    debugger
     return this.http.get<Book[]>(this.booksURL)
       .pipe(
         map(books => books.filter(book => {
-          return input.checked === true
-            ? book.title.toLowerCase() === term.toLowerCase()
-            : book.author_name[0].toLowerCase() === term.toLowerCase()
-        }))
+          debugger
+          return Array.isArray(book[searchBy])
+            ? book[searchBy].find(field => field.toLowerCase() === term.toLowerCase())
+            : book[searchBy].toLowerCase() === term.toLowerCase()
+        })),
+        tap(books => this.books$.next(books))
       )
   }
 

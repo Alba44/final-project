@@ -7,12 +7,12 @@
   <section class="dashboard__search">
     <div class="search-tab">
       <input #searchField class="search-input" type="text" placeholder="Title or author">
-      <button class="search-btn" routerLink="/search" (click)="search(title, searchField.value)">Search</button>
+      <button class="search-btn" routerLink="/search" (click)="search(filterForm.value, searchField.value)">Search</button>
     </div>
-    <div class="search-checkbox">
-      <input #title id="title" name="searchCondition" type="radio" checked>
+    <div class="search-checkbox" [formGroup]="filterForm">
+      <input formControlName="searchBy" name="searchCondition" type="radio" value="title" checked>
       <label for="title">Title</label>
-      <input #author id="author" name="searchCondition" type="radio">
+      <input formControlName="searchBy" name="searchCondition" type="radio" value="author_name">
       <label for="author">Author</label>
     </div>
   </section>
