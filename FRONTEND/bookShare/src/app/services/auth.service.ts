@@ -21,7 +21,6 @@ export class AuthService {
 
   public isAuthenticated () : Boolean {
     const userData = localStorage.getItem('userInfo')
-    console.log('esto es userData en isAuthenticated', userData)
     if (userData) {
       return true
     }
