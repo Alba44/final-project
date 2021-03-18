@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
-import { User } from './model/User'
-import { CONSTANTS } from '../assets/const'
+import { CONSTANTS } from '../../assets/const'
+import { User } from '../models/User'
 
 @Injectable({
   providedIn: 'root'

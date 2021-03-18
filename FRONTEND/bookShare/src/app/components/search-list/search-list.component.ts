@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { BooksService } from '../books.service'
+import { BooksService } from '../../services/books.service'
 
 @Component({
   selector: 'app-search-list',

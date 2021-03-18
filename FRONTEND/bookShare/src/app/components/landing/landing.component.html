@@ -12,10 +12,10 @@
     <form
       class="landing__popup-login hideLogin"
       [ngClass]="{displayLogin: statusLogin, hideLogin: !statusLogin}"
-      [formGroup]="loginForm">
-      <input class="popup__login" type="email" placeholder="Email" formControlName="email">
-      <input class="popup__login" type="password" placeholder="Password" formControlName="password">
-      <button class="popup__submit" type="button" routerLink="/profile" (click)="sendLoginInfo()">Submit</button>
+      >
+      <input class="popup__login" type="email" placeholder="Email" [formControl]="email">
+      <input class="popup__login" type="password" placeholder="Password" [formControl]="password">
+      <button class="popup__submit" type="button" (click)="sendLoginInfo()">Submit</button>
     </form>
     <form
       class="landing__popup-login hideRegister"

@@ -1,8 +1,8 @@
 /* eslint-disable no-useless-constructor */
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { BooksService } from '../books.service'
-import { UsersService } from '../users.service'
+import { BooksService } from 'src/app/services/books.service'
+import { UsersService } from 'src/app/services/users.service'
 
 @Component({
   selector: 'app-profile',
