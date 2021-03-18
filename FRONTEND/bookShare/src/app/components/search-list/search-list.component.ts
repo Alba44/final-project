@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { BooksService } from 'src/app/services/books.service'
+import { FormBuilder, Validators } from '@angular/forms'
+import { Subject } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+import { BooksService } from '../../services/books.service'
 
 @Component({
   selector: 'app-search-list',
@@ -7,36 +10,24 @@ import { BooksService } from 'src/app/services/books.service'
   styleUrls: ['./search-list.component.scss']
 })
 export class SearchListComponent implements OnInit {
-  books: any = this.bookService.books$
-  searchedBookTitle: any = this.bookService.title$
-  searchedBookAuthor: any = this.bookService.author$
-  searchByTitle
-  searchByAuthor
+filterForm = this.fb.group({
+  searchBy: ['title', Validators.required]
+})
 
-  constructor (private bookService: BooksService) {}
+  books$ = this.bookService.books$;
+
+  searchTerm$ = new Subject();
+  bookSearch$ = this.searchTerm$
+    .pipe(
+      switchMap((search: any) => this.bookService.filterBooks(search))
+    ).subscribe();
+
+  constructor (private bookService: BooksService, private fb: FormBuilder) {}
 
   ngOnInit (): void {
-    this.getSearchedBookFromDashboard()
-    this.getBooks()
   }
 
-  getBooks () {
-    this.bookService.getAllBooks() // .get del backend en el booksService
-    this.books.subscribe(data => { this.books = data })
-  }
-
-  getSearchedBookFromDashboard () {
-    this.searchedBookTitle.subscribe(data => { this.searchedBookTitle = data })
-    this.searchedBookAuthor.subscribe(data => { this.searchedBookAuthor = data })
-  }
-
-  searchBook (input, searchInput) {
-    if (input.checked) {
-      this.searchByTitle = this.books.filter((book) => searchInput.toUpperCase() === book.title.toUpperCase())
-      this.bookService.setTitle(this.searchByTitle)
-    } else {
-      this.searchByAuthor = this.books.filter((book) => searchInput.toUpperCase() === book.author_name[0].toUpperCase())
-      this.bookService.setAuthor(this.searchByAuthor)
-    }
+  searchBook ({ searchBy }, term) {
+    this.searchTerm$.next({ term, searchBy })
   }
 }

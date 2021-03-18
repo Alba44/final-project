@@ -10,7 +10,6 @@ import { BooksService } from 'src/app/services/books.service'
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  urlAPISearch = 'http://openlibrary.org/search.json?q='
   urlAPIBook = 'https://openlibrary.org/books/'
   urlCover = 'https://covers.openlibrary.org/b/id/'
   urlNoImage = 'https://www.ourbookshelves.com/media/pic_folder/default_pic/default.png'
@@ -42,10 +41,10 @@ export class ModalComponent implements OnInit {
     modalComp.classList.remove('display')
   }
 
-  fetchAPI (rawInfo) {
+  searchAPI (rawInfo) {
     const regex = /\s/ig
     const info = rawInfo.replaceAll(regex, '+')
-    return this.http.get(`${this.urlAPISearch}${info}`).subscribe(data => {
+    this.booksService.fetchAPI(info).subscribe(data => {
       this.searchedBookInfo = data
       this.bookFormInfo.patchValue(this.searchedBookInfo.docs[0])
       this.bookKey = this.searchedBookInfo.docs[0].cover_i
