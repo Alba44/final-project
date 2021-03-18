@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
-import { Book } from './model/Book'
-import { CONSTANTS } from '../assets/const'
+import { Book } from '../models/Book'
+import { CONSTANTS } from '../../assets/const'
 
 @Injectable({
   providedIn: 'root'

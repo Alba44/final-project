@@ -22,15 +22,15 @@ export class AuthService {
   public isAuthenticated () : Boolean {
     const userData = localStorage.getItem('userInfo')
     console.log('esto es userData en isAuthenticated', userData)
-    if (userData && JSON.parse(userData)) {
+    if (userData) {
       return true
     }
     return false
   }
 
-  public setUserInfo (userEmail) {
-    console.log('estos es setUserInfo', userEmail.email)
-    localStorage.setItem('userInfo', userEmail.email)
+  public setUserInfo (userData) {
+    this.loggedUser$.next(userData)
+    localStorage.setItem('userInfo', userData.email)
   }
 
   public validate (email, password) {

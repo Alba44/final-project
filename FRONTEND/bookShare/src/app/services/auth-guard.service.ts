@@ -12,10 +12,10 @@ export class AuthGuardService {
   ) { }
 
   canActivate () {
-    if (this.authService.isAuthenticated()) { // if the guard returns true, the navigation will continue; otherwise, it navigates to login.
+    if (this.authService.isAuthenticated()) { // if the guard returns true, the navigation will continue;
       return true
     }
-    this.route.navigate([''])
+    this.route.navigate(['']) // otherwise, it navigates to login.
     return false
   }
 }

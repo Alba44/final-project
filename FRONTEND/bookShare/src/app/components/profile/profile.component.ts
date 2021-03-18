@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { AuthService } from 'src/app/services/auth.service'
 import { BooksService } from 'src/app/services/books.service'
 import { UsersService } from 'src/app/services/users.service'
 
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit {
 
   constructor (
     private usersService: UsersService,
-    private booksService: BooksService
+    private booksService: BooksService,
+    private authService: AuthService
   ) {}
 
   ngOnInit (): void {
@@ -34,9 +36,8 @@ export class ProfileComponent implements OnInit {
       password: new FormControl('', (Validators.required, Validators.minLength(8)))
     })
 
-    this.usersService.getUsers().subscribe((answer) => {
-      this.loggedUser = answer[0]
-      this.updateDetailsForm.patchValue(answer[0])
+    this.authService.loggedUser$.subscribe((data) => {
+      this.updateDetailsForm.patchValue(data)
     })
 
     this.getBooks()
