@@ -10,7 +10,7 @@ const bookSchema = new Schema({
   language: String,
   subject: String,
   timesBorrowed: Number,
-  lender: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  lender: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
 module.exports = model('Book', bookSchema)

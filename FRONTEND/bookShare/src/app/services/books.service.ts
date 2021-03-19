@@ -11,14 +11,20 @@ import { CONSTANTS } from '../../assets/const'
 })
 export class BooksService {
   booksURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.booksParams}`
+
   urlAPISearch = 'http://openlibrary.org/search.json?q='
 
   books$ = new BehaviorSubject<Book[]>([])
+  userBooks$ = new BehaviorSubject<Book[]>([])
 
   constructor (private http: HttpClient) { }
 
   getAllBooks () {
     return this.http.get<Book[]>(this.booksURL).subscribe((data) => this.books$.next(data))
+  }
+
+  getUserBooks (userId) {
+    return this.http.get<Book[]>(`${this.booksURL}/${userId}`).subscribe((data) => this.userBooks$.next(data))
   }
 
   createBook (bookInfo) {

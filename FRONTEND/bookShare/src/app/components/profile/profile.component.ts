@@ -15,7 +15,7 @@ import { UsersService } from 'src/app/services/users.service'
 })
 export class ProfileComponent implements OnInit {
   users: BehaviorSubject<User[]> = this.usersService.users$
-  books: BehaviorSubject<Book[]> = this.booksService.books$
+  userBooks: BehaviorSubject<Book[]> = this.booksService.userBooks$
   loggedUser: any = this.authService.loggedUser$
   userId
 
@@ -44,11 +44,7 @@ export class ProfileComponent implements OnInit {
       this.loggedUser.next(data)
     })
 
-    this.getBooks()
-  }
-
-  getBooks () {
-    this.booksService.getAllBooks()
+    this.booksService.getUserBooks(this.userId)
   }
 
   showNewBookDialog () {

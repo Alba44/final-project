@@ -14,9 +14,29 @@ function booksControllers () {
     res.json(allBooks)
   }
 
+  function getUserBooks (req, res) {
+    const { userId } = req.params // id del user
+    Book.find({ lender: userId }, (error, searchedBooks) => {
+      error
+        ? res.send('An error occured while trying to retrieve a user\'s book')
+        : res.json(searchedBooks)
+    })
+  }
+
+  function getOneBook (req, res) {
+    const { bookId } = req.params // id del book
+    Book.findById(bookId, (error, searchedBook) => {
+      error
+        ? res.send('An error occured while trying to retrieve a book')
+        : res.json(searchedBook)
+    })
+  }
+
   return {
     createBook,
-    getAllBooks
+    getAllBooks,
+    getUserBooks,
+    getOneBook
   }
 }
 
