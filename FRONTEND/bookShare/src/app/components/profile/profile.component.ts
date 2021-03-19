@@ -34,13 +34,14 @@ export class ProfileComponent implements OnInit {
       name: new FormControl('', Validators.required),
       DOB: new FormControl(''),
       city: new FormControl(''),
-      email: new FormControl('', (Validators.email, Validators.required)),
+      email: new FormControl({ value: '', disabled: true }, (Validators.email, Validators.required)),
       password: new FormControl('', (Validators.required, Validators.minLength(8)))
     })
 
     this.userId = this.activatedRoute.snapshot.paramMap.get('id')
     this.usersService.getLoggedUser(this.userId).subscribe((data) => {
       this.updateDetailsForm.patchValue(data)
+      this.loggedUser.next(data)
     })
 
     this.getBooks()
