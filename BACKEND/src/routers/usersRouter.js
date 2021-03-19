@@ -8,11 +8,11 @@ function usersRouter () {
     .route('/')
     .post(createUser)
     .get(getAllUsers)
-    .put(updateUserDetails)
 
   router
-    .route('/:id')
+    .route('/:userId')
     .get(getOneUser)
+    .put(updateUserDetails)
 
   return router
 }

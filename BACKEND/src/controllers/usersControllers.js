@@ -16,8 +16,8 @@ function usersControllers () {
   }
 
   function getOneUser (req, res) {
-    const { id } = req.params
-    User.findById(id, (error, user) => {
+    const { userId } = req.params
+    User.findById(userId, (error, user) => {
       error
         ? res.send('An error occured while trying to retrieve a user')
         : res.json(user)
@@ -25,9 +25,9 @@ function usersControllers () {
   }
 
   async function updateUserDetails (req, res) {
-    const filter = { email: req.body.email }
+    const { userId } = req.params
     const update = req.body
-    await User.findOneAndUpdate(filter, update, { new: true }, (updateError, updatedUser) => {
+    await User.findOneAndUpdate(userId, update, { new: true }, (updateError, updatedUser) => {
       updateError
         ? res.send('An error occured while trying to update the user')
         : res.json(updatedUser)

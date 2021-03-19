@@ -35,7 +35,7 @@ export class BooksService {
     }
     return this.http.post<Book>(this.booksURL, bookInfo, httpOptions).pipe(
       tap()
-    ).subscribe()
+    )
   }
 
   filterBooks ({ term, searchBy }) {
