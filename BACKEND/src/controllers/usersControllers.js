@@ -19,7 +19,7 @@ function usersControllers () {
     const { id } = req.params
     User.findById(id, (error, user) => {
       error
-        ? res.send('An error occured while trying to create a user')
+        ? res.send('An error occured while trying to retrieve a user')
         : res.json(user)
     })
   }
