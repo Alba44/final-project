@@ -57,8 +57,10 @@ export class ModalComponent {
   }
 
   sendBookBack () {
-    this.booksService.createBook(this.bookFormInfo.value)
-    this.booksService.getAllBooks()
+    const userId = localStorage.getItem('userInfo')
+    const newBook = { ...this.bookFormInfo.value, lender: userId }
+    this.booksService.createBook(newBook)
+    this.booksService.getUserBooks(userId)
 
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.remove('display')

@@ -1,7 +1,7 @@
 <dialog class="profile__dialog">
       <h1>Create a new book for your library</h1>
       <form #form="ngForm" class="dialog-form" (ngSubmit)="sendBookBack()" [formGroup]="bookFormInfo">
-          <input #info type="text" placeholder="Search by title or/and author" formControlName="info">
+          <input #info type="text" placeholder="Search by title or/and author">
           <button type="button" class="profile__dialog-search" (click)="searchAPI(info.value)">Search</button>
           <input #title type="text" placeholder="Title" formControlName="title">
           <input #author_name type="text" placeholder="Author" formControlName="author_name">
