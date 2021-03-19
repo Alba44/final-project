@@ -1,15 +1,14 @@
-/* eslint-disable no-useless-constructor */
-import { HttpClient } from '@angular/common/http'
-import { Component, ElementRef, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { BooksService } from 'src/app/services/books.service'
+import { UsersService } from 'src/app/services/users.service'
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   urlAPIBook = 'https://openlibrary.org/books/'
   urlCover = 'https://covers.openlibrary.org/b/id/'
   urlNoImage = 'https://www.ourbookshelves.com/media/pic_folder/default_pic/default.png'
@@ -28,15 +27,11 @@ export class ModalComponent implements OnInit {
   })
 
   constructor (
-    private element: ElementRef,
-    private http: HttpClient,
+    private usersService: UsersService,
     private booksService: BooksService) { }
 
-  ngOnInit (): void {
-  }
-
   closeDialog () {
-    this.bookFormInfo.patchValue({})
+    this.bookFormInfo.reset()
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.remove('display')
   }
