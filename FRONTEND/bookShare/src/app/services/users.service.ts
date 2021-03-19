@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class UsersService {
   usersURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.usersParams}`
-  loggedURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.loggedParams}`
   users$ = new BehaviorSubject<User[]>([])
 
   constructor (private http: HttpClient, private activatedRoute: ActivatedRoute) { }
