@@ -43,15 +43,16 @@ header{
     .header__logged{
       display: flex;
 
-      .header__user-logo{
+      .header__logos{
         border: 0;
         background: none;
         margin-left: 20px;
+        margin-right: 40px;
         padding: 0;
         outline: none;
         cursor: pointer;
 
-        .user-logo{
+        .logo{
           width: 50px;
         }
       }

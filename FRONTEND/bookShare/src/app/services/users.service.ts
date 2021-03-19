@@ -12,14 +12,14 @@ export class UsersService {
   usersURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.usersParams}`
   users$ = new BehaviorSubject<User[]>([])
 
-  constructor (private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+  constructor (private http: HttpClient) { }
 
   getUsers () {
     return this.http.get<User[]>(this.usersURL)
   }
 
-  updateUser (newUserInfo) {
-    return this.http.put<User>(this.usersURL, newUserInfo).subscribe()
+  updateUser (newUserInfo, userId) {
+    return this.http.put<User>(`${this.usersURL}/${userId}`, newUserInfo).subscribe()
   }
 
   getLoggedUser (userId) {

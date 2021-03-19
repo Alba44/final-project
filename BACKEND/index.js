@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000
 const localhost = process.env.LOCALHOST
 const DDBB = process.env.DDBB_URL
 
-connect(DDBB, { useUnifiedTopology: true, useNewUrlParser: true })
+connect(DDBB, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
 
 app.use(morgan('dev'))
 

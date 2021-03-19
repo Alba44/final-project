@@ -27,8 +27,8 @@ export class ModalComponent {
   })
 
   constructor (
-    private usersService: UsersService,
-    private booksService: BooksService) { }
+    private booksService: BooksService,
+    private usersService: UsersService) { }
 
   closeDialog () {
     this.bookFormInfo.reset()
@@ -59,8 +59,11 @@ export class ModalComponent {
   sendBookBack () {
     const userId = localStorage.getItem('userInfo')
     const newBook = { ...this.bookFormInfo.value, lender: userId }
-    this.booksService.createBook(newBook)
+    this.booksService.createBook(newBook).subscribe((book) => {
+      this.usersService.updateUser({ books: [book._id] }, userId)
+    })
     this.booksService.getUserBooks(userId)
+    this.bookFormInfo.reset()
 
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.remove('display')

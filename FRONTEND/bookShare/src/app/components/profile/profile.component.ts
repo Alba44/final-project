@@ -53,6 +53,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateDetails (formInfo) {
-    this.usersService.updateUser(formInfo)
+    this.usersService.updateUser(formInfo, this.userId)
   }
 }
