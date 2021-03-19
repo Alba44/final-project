@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createBook, getAllBooks } = require('../controllers/booksControllers')
+const { createBook, getAllBooks, getUserBooks, getOneBook } = require('../controllers/booksControllers')
 
 function booksRouter () {
   const router = Router()
@@ -8,6 +8,14 @@ function booksRouter () {
     .route('/')
     .post(createBook)
     .get(getAllBooks)
+
+  router
+    .route('/:userId')
+    .get(getUserBooks)
+
+  router
+    .route('/:bookId')
+    .get(getOneBook)
 
   return router
 }
