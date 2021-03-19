@@ -1,7 +1,6 @@
-/* eslint-disable no-debugger */
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 import { CONSTANTS } from '../../assets/const'
 import { User } from '../models/User'
 
@@ -27,12 +26,7 @@ export class AuthService {
     return false
   }
 
-  public setUserInfo (userData) {
-    this.loggedUser$.next(userData)
-    localStorage.setItem('userInfo', userData.email)
-  }
-
-  public validate (email, password) {
-    return this.http.post(this.authLoginURL, { email: email, password: password })
+  validate (userInfo: User):Observable<User> {
+    return this.http.post<User>(this.authLoginURL, userInfo)
   }
 }

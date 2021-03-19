@@ -1,6 +1,9 @@
-/* eslint-disable no-useless-constructor */
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router'
+import { BehaviorSubject } from 'rxjs'
+import { Book } from 'src/app/models/Book'
+import { User } from 'src/app/models/User'
 import { AuthService } from 'src/app/services/auth.service'
 import { BooksService } from 'src/app/services/books.service'
 import { UsersService } from 'src/app/services/users.service'
@@ -11,19 +14,18 @@ import { UsersService } from 'src/app/services/users.service'
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  users = this.usersService.users$
-  books: any = this.booksService.books$
-  loggedUser
-
-  isPicUpdated: Boolean = false
-  updatePicInput = new FormControl('')
+  users: BehaviorSubject<User[]> = this.usersService.users$
+  books: BehaviorSubject<Book[]> = this.booksService.books$
+  loggedUser: any = this.authService.loggedUser$
+  userId
 
   updateDetailsForm: FormGroup
 
   constructor (
     private usersService: UsersService,
     private booksService: BooksService,
-    private authService: AuthService
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit (): void {
@@ -36,8 +38,8 @@ export class ProfileComponent implements OnInit {
       password: new FormControl('', (Validators.required, Validators.minLength(8)))
     })
 
-    this.authService.loggedUser$.subscribe((data) => {
-      console.log('esto es data', data)
+    this.userId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.usersService.getLoggedUser(this.userId).subscribe((data) => {
       this.updateDetailsForm.patchValue(data)
     })
 
@@ -45,8 +47,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getBooks () {
-    this.booksService.getAllBooks() // .get del backend en el booksService
-    this.books.subscribe(data => { this.books = data })
+    this.booksService.getAllBooks()
   }
 
   showNewBookDialog () {
@@ -55,7 +56,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateDetails (formInfo) {
-    console.log(formInfo)
-    this.usersService.updateUser(formInfo) // hacer put al back con la info updated
+    this.usersService.updateUser(formInfo)
   }
 }
