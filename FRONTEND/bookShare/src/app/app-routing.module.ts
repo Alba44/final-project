@@ -9,12 +9,13 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service'
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'search', component: SearchListComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

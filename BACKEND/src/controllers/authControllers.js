@@ -20,9 +20,14 @@ function authControllers () {
     }
   }
 
-  function login (req, res) {
+  async function login (req, res) {
     res.status(200)
-    res.json(req.body)
+    const filter = { ...req.body }
+    await User.findOne(filter, (error, user) => {
+      error
+        ? res.send('An error occured while trying to create a user')
+        : res.json(user)
+    })
   }
 
   return {

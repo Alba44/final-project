@@ -1,0 +1,191 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Baloo 2", cursive;
+  color: #252424;
+  overflow-y: auto;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px #bebebe;
+          box-shadow: inset 0 0 5px #bebebe;
+  border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #E68F77;
+  border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #D5441C;
+}
+
+.landing__container {
+  background-color: #F8F5F5;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23252424' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.landing__container .landing__general {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80%;
+}
+
+.landing__container .landing__general .landing__logo {
+  width: 320px;
+  height: auto;
+}
+
+.landing__container .landing__general .landing__subtitle {
+  color: #9DD5CB;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.landing__container .landing__register-signIn {
+  margin-top: 20px;
+}
+
+.landing__container .landing__register-signIn .landing__signIn {
+  width: 78px;
+  height: 35px;
+  background: #F4EBEB;
+  border: 0.5px solid #252424;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-right: 10px;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  outline: none;
+  cursor: pointer;
+}
+
+.landing__container .landing__register-signIn .landing__signIn:hover {
+  background-color: #ecdada;
+}
+
+.landing__container .landing__register-signIn .landing__register {
+  width: 78px;
+  height: 35px;
+  background: #F4EBEB;
+  border: 0.5px solid #252424;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.landing__container .landing__register-signIn .landing__register:hover {
+  background-color: #ecdada;
+}
+
+.landing__container .landing__register-signIn .landing__popup-login {
+  position: relative;
+  margin-top: 20px;
+  width: 200px;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  border: 0.5px solid #252424;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #F4EBEB;
+}
+
+.landing__container .landing__register-signIn .landing__popup-login .popup__login {
+  height: 20px;
+  width: 80%;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 0.5px solid #252424;
+  outline: none;
+}
+
+.landing__container .landing__register-signIn .landing__popup-login .popup__submit {
+  width: 70px;
+  height: 25px;
+  background: #F4EBEB;
+  border: 0.5px solid #252424;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.landing__container .landing__register-signIn .landing__popup-login .popup__submit:hover {
+  background-color: #ecdada;
+}
+
+.landing__container .hideLogin {
+  left: 210px;
+}
+
+.landing__container .displayLogin {
+  left: -20px;
+}
+
+.landing__container .hideRegister {
+  left: 410px;
+}
+
+.landing__container .displayRegister {
+  left: -20px;
+  top: -172px;
+}
+/*# sourceMappingURL=landing.component.css.map */
