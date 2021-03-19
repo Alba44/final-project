@@ -11,7 +11,8 @@ import { FooterComponent } from './components/footer/footer.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { HttpClientModule } from '@angular/common/http'
 import { ModalComponent } from './components/modal/modal.component'
-import { SearchListComponent } from './components/search-list/search-list.component'
+import { SearchListComponent } from './components/search-list/search-list.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchListComponent } from './components/search-list/search-list.compon
     FooterComponent,
     ProfileComponent,
     ModalComponent,
-    SearchListComponent
+    SearchListComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,
