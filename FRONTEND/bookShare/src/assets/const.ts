@@ -3,5 +3,6 @@ export const CONSTANTS = {
   usersParams: '/api/users',
   booksParams: '/api/books',
   authRegisterParams: '/authenticate/register',
-  authLoginParams: '/authenticate/login'
+  authLoginParams: '/authenticate/login',
+  APISearch: 'http://openlibrary.org/search.json?q='
 }
