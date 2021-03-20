@@ -1,3 +1,5 @@
+import { Book } from './Book'
+
 export interface User {
   _id: string,
   nickname: String,
@@ -8,7 +10,7 @@ export interface User {
   email: String,
   password: String,
   creationDate: String,
-  books: Array<{}>,
+  books: Book[],
   totalBooks: Number,
   borrowedBooks: Number
 }

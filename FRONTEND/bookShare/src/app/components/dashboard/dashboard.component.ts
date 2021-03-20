@@ -29,8 +29,6 @@ export class DashboardComponent implements OnInit {
   }
 
   search ({ searchBy }, term) {
-    // eslint-disable-next-line no-debugger
-    debugger
     this.searchTerm$.next({ term, searchBy })
   }
 }

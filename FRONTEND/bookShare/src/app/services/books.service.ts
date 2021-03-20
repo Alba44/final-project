@@ -27,7 +27,7 @@ export class BooksService {
     return this.http.get<Book[]>(`${this.booksURL}/${userId}`).subscribe((data) => this.userBooks$.next(data))
   }
 
-  createBook (bookInfo) {
+  createBook (bookInfo: object) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

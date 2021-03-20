@@ -19,7 +19,7 @@
   <section class="profile__own-books">
     <h2 class="books__title">TOP LENT BOOKS</h2>
     <div class="books-display">
-      <div class="own-books__container" *ngFor="let book of books | async">
+      <div class="own-books__container" *ngFor="let book of books | async" [routerLink]="['/book/', book._id]">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
         <p>{{book.author_name}}</p>

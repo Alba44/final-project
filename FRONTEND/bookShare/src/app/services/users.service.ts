@@ -18,11 +18,15 @@ export class UsersService {
     return this.http.get<User[]>(this.usersURL)
   }
 
-  updateUser (newUserInfo, userId) {
+  updateUser (newUserInfo: object, userId: string) {
     return this.http.put<User>(`${this.usersURL}/${userId}`, newUserInfo).subscribe()
   }
 
-  getLoggedUser (userId) {
+  addBookToUser (bookInfo: object, userId: string) {
+    return this.http.post<User>(`${this.usersURL}/books/${userId}`, bookInfo).subscribe()
+  }
+
+  getLoggedUser (userId: string) {
     return this.http.get<User>(`${this.usersURL}/${userId}`)
   }
 }
