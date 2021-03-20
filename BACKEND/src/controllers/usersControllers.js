@@ -15,13 +15,16 @@ function usersControllers () {
     res.json(allUsers)
   }
 
-  function getOneUser (req, res) {
+  async function getOneUser (req, res) {
     const { userId } = req.params
-    User.findById(userId, (error, user) => {
-      error
-        ? res.send('An error occured while trying to retrieve a user')
-        : res.json(user)
-    })
+    try {
+      const user = await User.findById(userId)
+        .populate('books')
+      res.json(user)
+    } catch (error) {
+      res.status(500)
+      res.send('An error occured while trying to retrieve a user')
+    }
   }
 
   async function updateUserDetails (req, res) {
@@ -34,11 +37,29 @@ function usersControllers () {
     })
   }
 
+  async function addBookToUser (req, res) {
+    const { userId } = req.params
+    try {
+      const user = await User.findById(userId)
+      let { books } = user
+      if (!books) {
+        books = []
+      }
+      books.push(req.body.books)
+      const updateUser = await User.findByIdAndUpdate(userId, { books })
+      res.json(updateUser)
+    } catch (error) {
+      res.status(500)
+      res.send('An error occured while trying to add a book to user')
+    }
+  }
+
   return {
     createUser,
     getAllUsers,
     updateUserDetails,
-    getOneUser
+    getOneUser,
+    addBookToUser
   }
 }
 

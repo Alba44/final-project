@@ -60,7 +60,7 @@ export class ModalComponent {
     const userId = localStorage.getItem('userInfo')
     const newBook = { ...this.bookFormInfo.value, lender: userId }
     this.booksService.createBook(newBook).subscribe((book) => {
-      this.usersService.updateUser({ books: [book._id] }, userId)
+      this.usersService.addBookToUser({ books: book._id }, userId)
     })
     this.booksService.getUserBooks(userId)
     this.bookFormInfo.reset()

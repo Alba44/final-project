@@ -1,8 +1,11 @@
 const { Router } = require('express')
-const { createUser, getAllUsers, updateUserDetails, getOneUser } = require('../controllers/usersControllers')
+const { createUser, getAllUsers, updateUserDetails, getOneUser, addBookToUser } = require('../controllers/usersControllers')
 
 function usersRouter () {
   const router = Router()
+  router
+    .route('/books/:userId')
+    .post(addBookToUser)
 
   router
     .route('/')
