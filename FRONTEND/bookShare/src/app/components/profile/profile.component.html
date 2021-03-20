@@ -43,7 +43,7 @@
       <img class="books__add" src="../../assets/media/icons8-libro-abierto-64 (1).png" alt="add book icon">
     </button>
     <div class="books-display">
-      <div class="own-books__container" *ngFor="let book of userBooks| async">
+      <div class="own-books__container" *ngFor="let book of userBooks| async" [routerLink]="['/book/', book._id]">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
         <p>{{book.author_name}}</p>
@@ -54,7 +54,7 @@
   <section class="profile__own-books">
     <h2 class="books__title">YOUR BORROWED BOOKS</h2>
     <div class="books-display">
-      <div class="own-books__container" *ngFor="let book of userBooks | async">
+      <div class="own-books__container" *ngFor="let book of userBooks | async" [routerLink]="['/book/', book._id]">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
         <p>{{book.author_name}}</p>
