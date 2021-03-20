@@ -23,12 +23,25 @@ function booksControllers () {
     })
   }
 
-  function getOneBook (req, res) {
+  async function getOneBook (req, res) {
     const { bookId } = req.params // id del book
-    Book.findById(bookId, (error, searchedBook) => {
-      error
-        ? res.send('An error occured while trying to retrieve a book')
-        : res.json(searchedBook)
+    try {
+      const selectedBook = await Book.findById(bookId)
+        .populate('users')
+      res.json(selectedBook)
+    } catch (error) {
+      res.status(500)
+      res.send('An error occured while trying to retrieve a book')
+    }
+  }
+
+  async function updateBookDetails (req, res) {
+    const { bookId } = req.params
+    const update = req.body
+    await Book.findByIdAndUpdate(bookId, update, { new: true }, (updateError, updatedBook) => {
+      updateError
+        ? res.send('An error occured while trying to update the user')
+        : res.json(updatedBook)
     })
   }
 
@@ -36,7 +49,8 @@ function booksControllers () {
     createBook,
     getAllBooks,
     getUserBooks,
-    getOneBook
+    getOneBook,
+    updateBookDetails
   }
 }
 

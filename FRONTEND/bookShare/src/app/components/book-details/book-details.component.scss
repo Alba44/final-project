@@ -32,7 +32,7 @@ align-items: center;
       justify-content: center;
       align-items: center;
       width: 250px;
-      height: 260px;
+      height: 340px;
       background-color: $turquoise;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 5px;
@@ -42,18 +42,14 @@ align-items: center;
         margin-bottom: 40px;
       }
 
-      .profile__picture-frame{
-        background-color: $white;
-      }
-
       .profile__picture{
         width: 220px;
-        border-radius: 50%;
+        height: 330px;
       }
 
       .profile__picture-update{
         position: relative;
-        top: 8%;
+        top: 2%;
         @include button($radius: 3px);
         border: 0;
         width: 160px;
@@ -101,7 +97,7 @@ align-items: center;
         background-color: $white;
         display: flex;
         flex-direction: column;
-        padding-bottom: 15px;
+        padding-bottom: 25px;
 
         textarea{
           resize: none;

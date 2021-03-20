@@ -3,9 +3,7 @@
   <div class="false-nav-bar"></div>
   <section class="profile__user-info">
     <div class="profile__picture-container">
-      <div class="profile__picture-frame">
-        <img class="profile__picture" src="../../../assets/media/cover_example.jpg" alt="book cover"/>
-      </div>
+      <img class="profile__picture" src="../../../assets/media/cover_example.jpg" alt="book cover"/>
       <button class="profile__picture-update">Update cover</button>
     </div>
     <article class="profile__details-container">
@@ -13,15 +11,16 @@
         <button
         class="details__update-btn"
         type="button"
+        (click)="updateInfo(updateBookForm.value)"
         >
         Update info
       </button>
         <label for="title">Title:</label>
         <input id="title" type="text" formControlName="title"/>
         <label for="author">Author:</label>
-        <input id="author" type="text" formControlName="author"/>
-        <label for="year">First publish year:</label>
-        <input id="year" type="text" formControlName="year"/>
+        <input id="author" type="text" formControlName="author_name"/>
+        <label for="year">Publish year:</label>
+        <input id="year" type="text" formControlName="first_publish_year"/>
         <label for="description">Description:</label>
         <textarea id="description" type="text" cols="30" rows="10" formControlName="description"></textarea>
       </form>
@@ -31,7 +30,7 @@
   <h2 class="books__title">OTHER USERS ALSO LIKED</h2>
     <app-modal></app-modal>
     <div class="books-display">
-      <div class="own-books__container" *ngFor="let book of books | async">
+      <div class="own-books__container" *ngFor="let book of allBooks | async">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
         <p>{{book.author_name}}</p>

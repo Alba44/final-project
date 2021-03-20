@@ -11,20 +11,31 @@ import { CONSTANTS } from '../../assets/const'
 })
 export class BooksService {
   booksURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.booksParams}`
-
-  urlAPISearch = 'http://openlibrary.org/search.json?q='
+  urlAPISearch = `${CONSTANTS.APISearch}`
 
   books$ = new BehaviorSubject<Book[]>([])
   userBooks$ = new BehaviorSubject<Book[]>([])
+  selectedBook$ = new BehaviorSubject<Book[]>([])
 
   constructor (private http: HttpClient) { }
 
   getAllBooks () {
-    return this.http.get<Book[]>(this.booksURL).subscribe((data) => this.books$.next(data))
+    return this.http.get<Book[]>(this.booksURL)
+  }
+
+  getSelectedBook (bookId: string) {
+    return this.http.get<Book>(`${this.booksURL}/book/${bookId}`)
   }
 
   getUserBooks (userId) {
-    return this.http.get<Book[]>(`${this.booksURL}/${userId}`).subscribe((data) => this.userBooks$.next(data))
+    return this.http.get<Book[]>(`${this.booksURL}/user/${userId}`).subscribe((data) => this.userBooks$.next(data))
+  }
+
+  sliceAllBooks (numSlice, books) {
+    const booksLength = books.length
+    const minIndex = Math.random() * ((booksLength - numSlice) - 0)
+    const maxIndex = minIndex + numSlice
+    return books.slice(minIndex, maxIndex)
   }
 
   createBook (bookInfo: object) {
@@ -54,5 +65,9 @@ export class BooksService {
 
   fetchAPI (searchInput) {
     return this.http.get(`${this.urlAPISearch}${searchInput}`)
+  }
+
+  updateBook (newBookrInfo: object, bookId: string) {
+    return this.http.put<Book>(`${this.booksURL}/book/${bookId}`, newBookrInfo).subscribe()
   }
 }

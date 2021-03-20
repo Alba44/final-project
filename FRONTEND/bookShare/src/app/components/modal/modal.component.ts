@@ -62,7 +62,6 @@ export class ModalComponent {
     this.booksService.createBook(newBook).subscribe((book) => {
       this.usersService.addBookToUser({ books: book._id }, userId)
     })
-    this.booksService.getUserBooks(userId)
     this.bookFormInfo.reset()
 
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
