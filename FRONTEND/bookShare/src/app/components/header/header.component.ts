@@ -9,6 +9,11 @@ import { Router } from '@angular/router'
 export class HeaderComponent {
   constructor (private router: Router) {}
 
+  navigate () {
+    const userId = localStorage.getItem('userInfo')
+    this.router.navigate([`/profile/${userId}`])
+  }
+
   logout () {
     localStorage.removeItem('userInfo')
     this.router.navigate(['/'])
