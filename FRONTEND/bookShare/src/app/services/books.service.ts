@@ -50,11 +50,9 @@ export class BooksService {
   }
 
   filterBooks ({ term, searchBy }) {
-    debugger
     return this.http.get<Book[]>(this.booksURL)
       .pipe(
         map(books => books.filter(book => {
-          debugger
           return Array.isArray(book[searchBy])
             ? book[searchBy].find(field => field.toLowerCase() === term.toLowerCase())
             : book[searchBy].toLowerCase() === term.toLowerCase()
