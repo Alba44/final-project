@@ -5,6 +5,7 @@ const bookSchema = new Schema({
   author_name: Array,
   first_publish_year: Number,
   description: String,
+  available: Boolean,
   covers: String,
   isbn: Number,
   language: String,

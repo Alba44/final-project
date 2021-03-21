@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { BooksService } from 'src/app/services/books.service'
+import { UsersService } from 'src/app/services/users.service'
 
 @Component({
   selector: 'app-book-details',
@@ -15,10 +16,14 @@ export class BookDetailsComponent implements OnInit {
   userId: string = localStorage.getItem('userInfo')
   selectedBook: any = this.bookService.selectedBook$
   bookLender: string
+  isAvailable: boolean
 
   updateBookForm: FormGroup
 
-  constructor (private bookService: BooksService, private activatedRoute: ActivatedRoute) { }
+  constructor (
+    private bookService: BooksService,
+    private activatedRoute: ActivatedRoute,
+    private usersService: UsersService) { }
 
   ngOnInit (): void {
     this.updateBookForm = new FormGroup({
@@ -26,7 +31,8 @@ export class BookDetailsComponent implements OnInit {
       author_name: new FormControl('', Validators.required),
       first_publish_year: new FormControl('', Validators.required),
       description: new FormControl(''),
-      covers: new FormControl('../../../assets/media/cover_example.jpg')
+      covers: new FormControl('../../../assets/media/cover_example.jpg'),
+      available: new FormControl()
     })
 
     this.bookId = this.activatedRoute.snapshot.paramMap.get('id')
@@ -37,14 +43,13 @@ export class BookDetailsComponent implements OnInit {
     })
 
     this.bookService.getAllBooks().subscribe((data) => {
-      const someBooks = this.bookService.sliceAllBooks(10, data)
+      const someBooks = this.bookService.sliceAllBooks(8, data)
       this.allBooks.next(someBooks)
     })
     this.selectedBook.subscribe((info) => {
-      console.log('selectedBook lender', info.lender)
       this.bookLender = info.lender
+      this.isAvailable = info.available
     })
-    console.log('booklender = ', this.bookLender, 'userid = ', this.userId)
   }
 
   updateInfo (formInfo) {
@@ -60,5 +65,10 @@ export class BookDetailsComponent implements OnInit {
       this.bookCover = reader.result.toString()
     }
     reader.readAsDataURL(file)
+  }
+
+  borrowBook () {
+    this.isAvailable = !this.isAvailable
+    this.bookService.updateBook({ available: this.isAvailable }, this.bookId)
   }
 }

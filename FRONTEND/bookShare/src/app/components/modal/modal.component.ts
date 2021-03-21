@@ -23,7 +23,8 @@ export class ModalComponent {
     title: new FormControl('', Validators.required),
     author_name: new FormControl('', Validators.required),
     first_publish_year: new FormControl('', Validators.required),
-    covers: new FormControl('')
+    covers: new FormControl(''),
+    available: new FormControl(true)
   })
 
   constructor (
@@ -59,6 +60,7 @@ export class ModalComponent {
   sendBookBack () {
     const userId = localStorage.getItem('userInfo')
     const newBook = { ...this.bookFormInfo.value, lender: userId }
+    console.log('form value', this.bookFormInfo.value)
     this.booksService.createBook(newBook).subscribe((book) => {
       this.usersService.addBookToUser({ books: book._id }, userId)
     })
