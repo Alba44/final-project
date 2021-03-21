@@ -26,6 +26,7 @@ align-items: center;
       display: flex;
       width: 85%;
       justify-content: space-between;
+      align-items: flex-start;
 
       @include media(800px){
       width: 90%;
@@ -38,20 +39,17 @@ align-items: center;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 250px;
-        height: 340px;
-        background-color: $turquoise;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 5px;
-        padding-top: 20px;
 
         @include media (800px){
           margin-bottom: 40px;
         }
 
         .profile__picture{
-          width: 220px;
-          height: 330px;
+          width: 250px;
+          height: 340px;
+          border: 15px solid $turquoise;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 5px;
         }
 
         .profile__picture-update{
@@ -69,31 +67,50 @@ align-items: center;
         display: flex;
         flex-direction: column;
         width: 50%;
-        padding: 15px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 40px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border: 15px solid $turquoise;
         border-radius: 5px;
 
         @include media(800px){
         width: 70%;
-      }
-
-        textarea{
-          resize: none;
-          width: 70%;
-          margin-left: 40px;
         }
 
-        label{
+        .details-form__header{
+          display: flex;
+          justify-content: space-between;
+
+          .details-form__available{
+            padding-left: 40px;
+          }
+
+          .details__update-btn{
+            @include button($radius: 3px);
+            border: 0;
+            margin-right: 20px;
+            align-self: flex-end;
+            width: 110px;
+            height: 30px;
+
+            @include media(800px){
+              margin-right: 10px;
+            }
+          }
+        }
+
+
+        .form-label{
           margin-left: 40px;
 
           @include media(800px){
             margin-left: 20px;
-
           }
         }
 
-        input{
+        .form-input{
           margin-left: 40px;
           margin-bottom: 10px;
           width: 40%;
@@ -106,25 +123,21 @@ align-items: center;
         }
 
         textarea{
+          resize: none;
+          width: 70%;
+          margin-left: 40px;
+
           @include media(800px){
             margin-left: 20px;
             width: 70%;
           }
         }
 
-        .details__update-btn{
-          @include button($radius: 3px);
-          border: 0;
-          margin-top: 10px;
-          margin-right: 20px;
-          align-self: flex-end;
-          width: 110px;
-          height: 30px;
-
-          @include media(800px){
-            margin-right: 10px;
-          }
+        #available{
+          margin-left: 10px;
+          padding-top: 10px;
         }
+
       }
 
       .profile__details-list{

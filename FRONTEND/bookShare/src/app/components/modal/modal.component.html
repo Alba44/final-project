@@ -7,6 +7,7 @@
           <input #author_name type="text" placeholder="Author" formControlName="author_name">
           <input #first_publish_year type="text" placeholder="Publish year" formControlName="first_publish_year">
           <input #covers type="text" formControlName="covers" placeholder="Book cover URL">
+          <label for="available">Available to borrow: <input type="checkbox" id="available" formControlName="available" checked></label>
           <button type="submit" class="profile__dialog-create">Create Book</button>
           <button type="button" class="profile__dialog-create" (click)="closeDialog()">Cancel</button>
       </form>
