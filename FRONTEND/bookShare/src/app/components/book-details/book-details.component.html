@@ -2,17 +2,18 @@
 <main>
   <div class="false-nav-bar"></div>
   <section class="profile__user-info">
-    <div class="profile__picture-container">
-      <img class="profile__picture" src="../../../assets/media/cover_example.jpg" alt="book cover"/>
-      <button class="profile__picture-update">Update cover</button>
-    </div>
-    <article class="profile__details-container">
-      <form class="profile__details-form" [formGroup]="updateBookForm">
+    <form class="profile__details-container" [formGroup]="updateBookForm">
+      <div class="profile__picture-container">
+        <img class="profile__picture" [src]="bookCover" alt="book cover"/>
+        <input type="file" #covers (change)="selectImage($event)" *ngIf="bookLender === userId">
+        <button class="profile__picture-update" *ngIf="bookLender === userId" (click)="covers.click()">Update cover</button>
+      </div>
+      <div class="profile__details-form" >
         <button
         class="details__update-btn"
         type="button"
         (click)="updateInfo(updateBookForm.value)"
-        >
+        *ngIf="bookLender === userId">
         Update info
       </button>
         <label for="title">Title:</label>
@@ -23,11 +24,11 @@
         <input id="year" type="text" formControlName="first_publish_year"/>
         <label for="description">Description:</label>
         <textarea id="description" type="text" cols="30" rows="10" formControlName="description"></textarea>
-      </form>
-    </article>
+      </div>
+    </form>
   </section>
   <section class="profile__own-books">
-  <h2 class="books__title">OTHER USERS ALSO LIKED</h2>
+  <h2 class="books__title">OTHER USERS ALSO BORROWED</h2>
     <app-modal></app-modal>
     <div class="books-display">
       <div class="own-books__container" *ngFor="let book of allBooks | async">

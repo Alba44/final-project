@@ -5,5 +5,6 @@ export interface Book {
   author_name: string[],
   first_publish_year: number,
   covers: string,
-  description: string
+  description: string,
+  available: boolean
 }
