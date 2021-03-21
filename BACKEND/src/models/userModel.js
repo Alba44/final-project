@@ -5,13 +5,10 @@ const userSchema = new Schema({
   name: String,
   DOB: String,
   city: String,
-  country: String,
   email: String,
   password: String,
   creationDate: { type: Date, default: Date.now },
-  books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
-  totalBooks: Number,
-  borrowedBooks: Number
+  books: [{ type: Schema.Types.ObjectId, ref: 'Book' }]
 })
 
 userSchema.methods.validPassword = function validPassword (pwd) {
