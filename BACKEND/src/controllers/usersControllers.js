@@ -30,7 +30,7 @@ function usersControllers () {
   async function updateUserDetails (req, res) {
     const { userId } = req.params
     const update = req.body
-    await User.findOneAndUpdate(userId, update, { new: true }, (updateError, updatedUser) => {
+    await User.findByIdAndUpdate(userId, update, { new: true }, (updateError, updatedUser) => {
       updateError
         ? res.send('An error occured while trying to update the user')
         : res.json(updatedUser)

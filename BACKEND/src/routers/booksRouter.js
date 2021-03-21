@@ -1,21 +1,22 @@
 const { Router } = require('express')
-const { createBook, getAllBooks, getUserBooks, getOneBook } = require('../controllers/booksControllers')
+const { createBook, getAllBooks, getUserBooks, getOneBook, updateBookDetails } = require('../controllers/booksControllers')
 
 function booksRouter () {
   const router = Router()
 
   router
-    .route('/')
-    .post(createBook)
-    .get(getAllBooks)
+    .route('/book/:bookId')
+    .get(getOneBook)
+    .put(updateBookDetails)
 
   router
-    .route('/:userId')
+    .route('/user/:userId')
     .get(getUserBooks)
 
   router
-    .route('/:bookId')
-    .get(getOneBook)
+    .route('/')
+    .post(createBook)
+    .get(getAllBooks)
 
   return router
 }
