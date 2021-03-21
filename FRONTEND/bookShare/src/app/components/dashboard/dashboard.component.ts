@@ -10,7 +10,7 @@ import { BooksService } from '../../services/books.service'
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  books: any = this.bookService.books$
+  allBooks: any = this.bookService.books$
 
   filterForm = this.fb.group({
     searchBy: ['title', Validators.required]
@@ -25,7 +25,10 @@ export class DashboardComponent implements OnInit {
   constructor (private bookService: BooksService, private fb: FormBuilder) {}
 
   ngOnInit (): void {
-    this.bookService.getAllBooks()
+    this.bookService.getAllBooks().subscribe((data) => {
+      const someBooks = this.bookService.sliceAllBooks(18, data)
+      this.allBooks.next(someBooks)
+    })
   }
 
   search ({ searchBy }, term) {
