@@ -18,7 +18,7 @@ export class AuthService {
     return this.http.post<User>(this.authRegisterURL, registerInfo).subscribe()
   }
 
-  public isAuthenticated () : Boolean {
+  public isAuthenticated () : boolean {
     const userData = localStorage.getItem('userInfo')
     if (userData) {
       return true

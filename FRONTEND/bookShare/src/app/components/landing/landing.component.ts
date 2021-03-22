@@ -9,8 +9,8 @@ import { AuthService } from 'src/app/services/auth.service'
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
-  statusLogin : Boolean = false
-  statusRegister : Boolean = false
+  statusLogin : boolean = false
+  statusRegister : boolean = false
   loggedUser: any = this.authService.loggedUser$
 
   registerForm = new FormGroup({
