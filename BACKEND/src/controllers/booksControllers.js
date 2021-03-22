@@ -40,8 +40,17 @@ function booksControllers () {
     const update = req.body
     await Book.findByIdAndUpdate(bookId, update, { new: true }, (updateError, updatedBook) => {
       updateError
-        ? res.send('An error occured while trying to update the user')
+        ? res.send('An error occured while trying to update the book')
         : res.json(updatedBook)
+    })
+  }
+
+  async function deleteBook (req, res) {
+    const { bookId } = req.params
+    await Book.findByIdAndDelete(bookId, (deleteError, deletedBook) => {
+      deleteError
+        ? res.send('An error occured while trying to delete the book')
+        : res.json(deletedBook)
     })
   }
 
@@ -50,7 +59,8 @@ function booksControllers () {
     getAllBooks,
     getUserBooks,
     getOneBook,
-    updateBookDetails
+    updateBookDetails,
+    deleteBook
   }
 }
 

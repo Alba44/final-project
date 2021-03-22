@@ -4,14 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 import { Book } from '../models/Book'
-import { CONSTANTS } from '../../assets/const'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
-  booksURL: string = `${CONSTANTS.urlDDBB}${CONSTANTS.booksParams}`
-  urlAPISearch = `${CONSTANTS.APISearch}`
+  booksURL: string = `${environment.server}${environment.booksParams}`
+  urlAPISearch = `${environment.searchURL}`
 
   books$ = new BehaviorSubject<Book[]>([])
   userBooks$ = new BehaviorSubject<Book[]>([])
@@ -67,5 +67,9 @@ export class BooksService {
 
   updateBook (newBookrInfo: object, bookId: string) {
     return this.http.put<Book>(`${this.booksURL}/book/${bookId}`, newBookrInfo).subscribe()
+  }
+
+  deleteBook (bookId: string) {
+    return this.http.delete<Book>(`${this.booksURL}/book/${bookId}`).subscribe()
   }
 }

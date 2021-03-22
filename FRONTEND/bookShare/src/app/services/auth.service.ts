@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, Observable } from 'rxjs'
-import { CONSTANTS } from '../../assets/const'
 import { User } from '../models/User'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authRegisterURL = `${CONSTANTS.urlDDBB}${CONSTANTS.authRegisterParams}`
-  authLoginURL = `${CONSTANTS.urlDDBB}${CONSTANTS.authLoginParams}`
+  authRegisterURL = `${environment.server}${environment.authRegisterParams}`
+  authLoginURL = `${environment.server}${environment.authLoginParams}`
   loggedUser$ = new BehaviorSubject<User[]>([])
 
   constructor (private http: HttpClient) { }

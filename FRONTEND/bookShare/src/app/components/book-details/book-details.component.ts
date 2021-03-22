@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
-import { BooksService } from 'src/app/services/books.service'
-import { UsersService } from 'src/app/services/users.service'
+import { BooksService } from '../../services/books.service'
 
 @Component({
   selector: 'app-book-details',
@@ -11,10 +10,9 @@ import { UsersService } from 'src/app/services/users.service'
 })
 export class BookDetailsComponent implements OnInit {
   allBooks: any = this.bookService.books$
-  bookCover: string
+  bookCover
   bookId: string
   userId: string = localStorage.getItem('userInfo')
-  selectedBook: any = this.bookService.selectedBook$
   bookLender: string
   isAvailable: boolean
 
@@ -22,8 +20,7 @@ export class BookDetailsComponent implements OnInit {
 
   constructor (
     private bookService: BooksService,
-    private activatedRoute: ActivatedRoute,
-    private usersService: UsersService) { }
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit (): void {
     this.updateBookForm = new FormGroup({
@@ -31,24 +28,21 @@ export class BookDetailsComponent implements OnInit {
       author_name: new FormControl('', Validators.required),
       first_publish_year: new FormControl('', Validators.required),
       description: new FormControl(''),
-      covers: new FormControl('../../../assets/media/cover_example.jpg'),
+      covers: new FormControl(),
       available: new FormControl()
     })
 
     this.bookId = this.activatedRoute.snapshot.paramMap.get('id')
     this.bookService.getSelectedBook(this.bookId).subscribe((data) => {
       this.bookCover = data.covers
+      this.bookLender = data.lender
+      this.isAvailable = data.available
       this.updateBookForm.patchValue(data)
-      this.selectedBook.next(data)
     })
 
     this.bookService.getAllBooks().subscribe((data) => {
       const someBooks = this.bookService.sliceAllBooks(8, data)
       this.allBooks.next(someBooks)
-    })
-    this.selectedBook.subscribe((info) => {
-      this.bookLender = info.lender
-      this.isAvailable = info.available
     })
   }
 
@@ -70,5 +64,18 @@ export class BookDetailsComponent implements OnInit {
   borrowBook () {
     this.isAvailable = !this.isAvailable
     this.bookService.updateBook({ available: this.isAvailable }, this.bookId)
+  }
+
+  removeBook () {
+    this.bookService.deleteBook(this.bookId)
+  }
+
+  renderBookInfo (bookId) {
+    this.bookService.getSelectedBook(bookId).subscribe((data) => {
+      this.bookCover = data.covers
+      this.bookLender = data.lender
+      this.isAvailable = data.available
+      this.updateBookForm.patchValue(data)
+    })
   }
 }

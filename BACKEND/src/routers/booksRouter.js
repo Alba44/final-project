@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createBook, getAllBooks, getUserBooks, getOneBook, updateBookDetails } = require('../controllers/booksControllers')
+const { createBook, getAllBooks, getUserBooks, getOneBook, updateBookDetails, deleteBook } = require('../controllers/booksControllers')
 
 function booksRouter () {
   const router = Router()
@@ -8,6 +8,7 @@ function booksRouter () {
     .route('/book/:bookId')
     .get(getOneBook)
     .put(updateBookDetails)
+    .delete(deleteBook)
 
   router
     .route('/user/:userId')

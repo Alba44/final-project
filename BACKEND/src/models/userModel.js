@@ -8,7 +8,8 @@ const userSchema = new Schema({
   email: String,
   password: String,
   creationDate: { type: Date, default: Date.now },
-  books: [{ type: Schema.Types.ObjectId, ref: 'Book' }]
+  books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
+  photo: String
 })
 
 userSchema.methods.validPassword = function validPassword (pwd) {

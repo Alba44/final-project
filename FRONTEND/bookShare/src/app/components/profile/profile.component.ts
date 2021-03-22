@@ -17,7 +17,8 @@ export class ProfileComponent implements OnInit {
   users: BehaviorSubject<User[]> = this.usersService.users$
   userBooks: BehaviorSubject<Book[]> = this.booksService.userBooks$
   loggedUser: any = this.authService.loggedUser$
-  userId
+  userId: string
+  profilePic: string
 
   updateDetailsForm: FormGroup
 
@@ -34,14 +35,18 @@ export class ProfileComponent implements OnInit {
       name: new FormControl('', Validators.required),
       DOB: new FormControl(''),
       city: new FormControl(''),
-      email: new FormControl({ value: '', disabled: true }, (Validators.email, Validators.required)),
-      password: new FormControl('', (Validators.required, Validators.minLength(8)))
+      email: new FormControl('', (Validators.email, Validators.required)),
+      password: new FormControl('', (Validators.required, Validators.minLength(8))),
+      photo: new FormControl('')
     })
 
     this.userId = this.activatedRoute.snapshot.paramMap.get('id')
     this.usersService.getLoggedUser(this.userId).subscribe((data) => {
       this.updateDetailsForm.patchValue(data)
       this.loggedUser.next(data)
+      if (!data.photo) {
+        this.profilePic = '../../assets/media/394-3947083_round-profile-picture-png-transparent-png.png'
+      }
     })
 
     this.booksService.getUserBooks(this.userId)
@@ -53,6 +58,19 @@ export class ProfileComponent implements OnInit {
   }
 
   updateDetails (formInfo) {
+    console.log(formInfo)
     this.usersService.updateUser(formInfo, this.userId)
+  }
+
+  selectProfilePic (event: Event) {
+    console.log(event)
+    const file = (event.target as HTMLInputElement).files[0]
+    this.updateDetailsForm.patchValue({ photo: file })
+    this.updateDetailsForm.get('photo').updateValueAndValidity()
+    const reader = new FileReader()
+    reader.onload = () => {
+      this.profilePic = reader.result.toString()
+    }
+    reader.readAsDataURL(file)
   }
 }
