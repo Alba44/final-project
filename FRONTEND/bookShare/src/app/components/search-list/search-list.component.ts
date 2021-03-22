@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
@@ -9,11 +9,7 @@ import { BooksService } from '../../services/books.service'
   templateUrl: './search-list.component.html',
   styleUrls: ['./search-list.component.scss']
 })
-export class SearchListComponent implements OnInit {
-filterForm = this.fb.group({
-  searchBy: ['title', Validators.required]
-})
-
+export class SearchListComponent {
   books$ = this.bookService.books$;
 
   searchTerm$ = new Subject();
@@ -22,12 +18,13 @@ filterForm = this.fb.group({
       switchMap((search: any) => this.bookService.filterBooks(search))
     ).subscribe();
 
-  constructor (private bookService: BooksService, private fb: FormBuilder) {}
+    filterForm = this.fb.group({
+      searchBy: ['title', Validators.required]
+    })
 
-  ngOnInit (): void {
-  }
+    constructor (private bookService: BooksService, private fb: FormBuilder) {}
 
-  searchBook ({ searchBy }, term) {
-    this.searchTerm$.next({ term, searchBy })
-  }
+    searchBook ({ searchBy }, term) {
+      this.searchTerm$.next({ term, searchBy })
+    }
 }
