@@ -23,7 +23,8 @@
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
         <p>{{book.author_name}}</p>
-        <p>Available/not</p>
+        <p *ngIf="book.available" style="color: #0a816b">Available</p>
+        <p *ngIf="!book.available" style="color: #D5441C">Not Available</p>
       </div>
     </div>
   </section>

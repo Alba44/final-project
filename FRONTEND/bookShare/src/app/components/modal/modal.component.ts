@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { BooksService } from 'src/app/services/books.service'
 import { UsersService } from 'src/app/services/users.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-modal',
@@ -9,9 +10,8 @@ import { UsersService } from 'src/app/services/users.service'
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
-  urlAPIBook = 'https://openlibrary.org/books/'
-  urlCover = 'https://covers.openlibrary.org/b/id/'
-  urlNoImage = 'https://www.ourbookshelves.com/media/pic_folder/default_pic/default.png'
+  urlCover = environment.coverURL
+  urlNoImage = environment.noPicURL
   bookKey: string
   bookJSON: any
   coverString: string
