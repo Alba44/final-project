@@ -5,8 +5,8 @@
     <form class="profile__details-container" [formGroup]="updateBookForm">
       <div class="profile__picture-container">
         <img class="profile__picture" [src]="bookCover" alt="book cover"/>
-        <input type="file" #covers (change)="selectImage($event)" *ngIf="bookLender === userId">
-        <button class="profile__picture-update" *ngIf="bookLender === userId" (click)="covers.click()">Update cover</button>
+        <input type="file" #covers (change)="selectImage($event)" *ngIf="bookLender === userId" formControlName="covers" style="display: none">
+        <button class="profile__picture-update" *ngIf="bookLender === userId" (click)="covers.click()" style="display: none">Update cover</button>
       </div>
       <div class="profile__details-form" >
         <div class="details-form__header">
@@ -18,6 +18,14 @@
             (click)="updateInfo(updateBookForm.value)"
             *ngIf="bookLender === userId">
             Update info
+          </button>
+          <button
+            class="details__update-btn"
+            type="button"
+            (click)="removeBook()"
+            *ngIf="bookLender === userId"
+            [routerLink]="['/profile/', userId]">
+            Delete book
           </button>
           <button
             class="details__update-btn"
@@ -52,11 +60,16 @@
   <h2 class="books__title">OTHER USERS ALSO BORROWED</h2>
     <app-modal></app-modal>
     <div class="books-display">
-      <div class="own-books__container" *ngFor="let book of allBooks | async" [routerLink]="['/book/', book._id]">
+      <div
+      class="own-books__container"
+      *ngFor="let book of allBooks | async"
+      [routerLink]="['/book/', book._id]"
+      (click)="renderBookInfo(book._id)">
         <img class="own-books__cover" src={{book.covers}} alt="book cover">
         <p>{{book.title}}</p>
         <p>{{book.author_name}}</p>
-        <p>Available/not</p>
+        <p *ngIf="book.available" style="color: #0a816b">Available</p>
+        <p *ngIf="!book.available" style="color: #D5441C">Not Available</p>
       </div>
     </div>
   </section>
