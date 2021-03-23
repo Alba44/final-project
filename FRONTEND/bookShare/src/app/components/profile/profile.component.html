@@ -3,9 +3,7 @@
   <section class="profile__user-info">
     <form class="profile__details-container" [formGroup]="updateDetailsForm">
       <div class="profile__picture-container">
-        <img class="profile__picture" [src]="profilePic" alt="profile"/>
-        <input type="file" #photoPic (change)="selectProfilePic($event)" formControlName="photo" style="display: none">
-        <button type="button" class="profile__picture-update" (click)="photoPic.click()" style="display: none">Update profile pic</button>
+        <img class="profile__picture" src={{profilePic}} alt="profile"/>
       </div>
       <div class="profile__details-form">
         <button

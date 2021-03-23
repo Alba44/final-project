@@ -5,12 +5,14 @@ import { BehaviorSubject } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
 import { Book } from '../models/Book'
 import { environment } from 'src/environments/environment'
+import { User } from '../models/User'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
   booksURL: string = `${environment.server}${environment.booksParams}`
+  usersURL: string = `${environment.server}${environment.usersParams}`
   urlAPISearch = `${environment.searchURL}`
 
   books$ = new BehaviorSubject<Book[]>([])
@@ -69,7 +71,11 @@ export class BooksService {
     return this.http.put<Book>(`${this.booksURL}/book/${bookId}`, newBookrInfo).subscribe()
   }
 
-  deleteBook (bookId: string) {
+  deleteBookFromBooks (bookId: string) {
     return this.http.delete<Book>(`${this.booksURL}/book/${bookId}`).subscribe()
+  }
+
+  deleteBookFromUser (bookId: string, userId: string) {
+    return this.http.put<User>(`${this.usersURL}/books/${userId}`, bookId).subscribe()
   }
 }
