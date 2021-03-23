@@ -1,4 +1,4 @@
-const { createUser, getAllUsers, updateUserDetails, getOneUser, addBookToUser } = require('./usersControllers')
+const { createUser, getAllUsers, updateUserDetails, getOneUser, addBookToUser, deleteBookFromUser } = require('./usersControllers')
 const User = require('../models/userModel')
 
 jest.mock('../models/userModel')
@@ -137,8 +137,7 @@ describe('Given a addBookToUser function', () => {
   describe('When it is invoked', () => {
     test('Then res.json should be called', async () => {
       const req = {
-        params: { userId: 'userId' },
-        body: { books: null }
+        params: { userId: 'userId' }
       }
 
       const res = {
@@ -147,8 +146,11 @@ describe('Given a addBookToUser function', () => {
         json: jest.fn()
       }
 
-      User.findById.mockImplementationOnce(req.params.userId)
-      User.findByIdAndUpdate = jest.fn().mockImplementationOnce((query, update, callBack) => callBack(false, {}))
+      const user = {
+      }
+
+      User.findById.mockReturnValueOnce(user)
+      User.findByIdAndUpdate = jest.fn().mockImplementationOnce((query, update))
 
       await addBookToUser(req, res)
 
@@ -167,7 +169,59 @@ describe('Given a addBookToUser function', () => {
         json: jest.fn()
       }
 
+      User.findByIdAndUpdate = jest.fn().mockImplementationOnce(() => { throw new Error() })
+
       await addBookToUser(req, res)
+
+      expect(res.send).toHaveBeenCalled()
+    })
+  })
+})
+
+describe('Given a deleteBookFromUser function', () => {
+  describe('When it is invoked', () => {
+    test('Then res.json should be called', async () => {
+      const req = {
+        params: { userId: 'userId' },
+        body: { bookId: 'bookId' }
+      }
+
+      const res = {
+        send: jest.fn(),
+        json: jest.fn()
+      }
+
+      const user = {
+        books: ['book']
+      }
+
+      User.findById.mockReturnValueOnce(user)
+      User.findByIdAndUpdate = jest.fn().mockImplementationOnce((query, update, callBack) => callBack(false, {}))
+
+      await deleteBookFromUser(req, res)
+
+      expect(res.json).toHaveBeenCalled()
+    })
+
+    test('Then res.send should be called', async () => {
+      const req = {
+        params: { userId: 'userId' },
+        body: { bookId: 'bookId' }
+      }
+
+      const res = {
+        send: jest.fn(),
+        json: jest.fn()
+      }
+
+      const user = {
+        books: ['book']
+      }
+
+      User.findById.mockReturnValueOnce(user)
+      User.findByIdAndUpdate = jest.fn().mockImplementationOnce((query, update, callBack) => callBack(true, {}))
+
+      await deleteBookFromUser(req, res)
 
       expect(res.send).toHaveBeenCalled()
     })
