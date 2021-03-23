@@ -1,4 +1,5 @@
 const User = require('../models/userModel')
+const Book = require('../models/bookModel')
 
 function usersControllers () {
   function createUser ({ body }, res) {
@@ -54,12 +55,29 @@ function usersControllers () {
     }
   }
 
+  async function deleteBookFromUser (req, res) {
+    const { userId } = req.params
+    const { bookId } = req.body
+
+    const user = await User.findById(userId)
+    let { books } = user
+    const newUsersBooks = books.filter((book) => book._id !== bookId)
+    books = newUsersBooks
+
+    await User.findByIdAndUpdate(userId, { books }, (updateError, updatedUser) => {
+      updateError
+        ? res.send('An error occured while trying to delete a book from user\'s list')
+        : res.json(updatedUser)
+    })
+  }
+
   return {
     createUser,
     getAllUsers,
     updateUserDetails,
     getOneUser,
-    addBookToUser
+    addBookToUser,
+    deleteBookFromUser
   }
 }
 
