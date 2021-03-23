@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { Router } from '@angular/router'
 
 import { HeaderComponent } from './header.component'
 
-describe('Given a HeaderComponent', () => {
+describe('HeaderComponent', () => {
   let component: HeaderComponent
   let fixture: ComponentFixture<HeaderComponent>
   let mockRouter: Partial<Router>
@@ -22,8 +23,17 @@ describe('Given a HeaderComponent', () => {
     fixture.detectChanges()
   })
 
-  it('should create', () => {
-    const spyFn = spyOn(component, 'navigate')
+  it('should call navigate with logout function', () => {
+    const mockRouter = {
+      navigate: jasmine.createSpy('navigate')
+    }
+    component.logout()
+
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/'])
+  })
+
+  it('should call navigate with navigate function', () => {
+    const spyFn = spyOn(component.router, 'navigate').and.callThrough()
     component.navigate()
 
     expect(spyFn).toHaveBeenCalled()

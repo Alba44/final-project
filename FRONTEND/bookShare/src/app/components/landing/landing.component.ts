@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/services/auth.service'
 export class LandingComponent {
   statusLogin : boolean = false
   statusRegister : boolean = false
-  loggedUser: any = this.authService.loggedUser$
 
   registerForm = new FormGroup({
     email: new FormControl('', Validators.required),

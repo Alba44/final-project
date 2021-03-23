@@ -8,7 +8,9 @@ describe('Given a validPassword function', () => {
         }
       }
 
-      expect(userSchema.methods.validPassword).toBeDefined()
+      userSchema.methods.validPassword = jest.fn().mockImplementationOnce()
+
+      expect(userSchema.methods.validPassword).toHaveBeenCalled()
     })
   })
 })

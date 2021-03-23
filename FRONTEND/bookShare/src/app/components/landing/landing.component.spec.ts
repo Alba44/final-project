@@ -1,5 +1,9 @@
+/* eslint-disable no-undef */
+import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
+import { By } from '@angular/platform-browser'
 import { AuthService } from 'src/app/services/auth.service'
 
 import { LandingComponent } from './landing.component'
@@ -9,6 +13,8 @@ describe('LandingComponent', () => {
   let fixture: ComponentFixture<LandingComponent>
   let mockAuth: Partial<AuthService>
   let mockRouter: Partial<Router>
+  let element: HTMLElement
+  let debug: DebugElement
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +22,7 @@ describe('LandingComponent', () => {
       providers: [
         { provide: AuthService, useValue: mockAuth },
         { provide: Router, useValue: mockRouter }],
-      imports: []
+      imports: [FormsModule, ReactiveFormsModule]
     })
       .compileComponents()
   })
@@ -25,37 +31,25 @@ describe('LandingComponent', () => {
     fixture = TestBed.createComponent(LandingComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    debug = fixture.debugElement.query(By.css('form'))
+    element = debug.nativeElement
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
   })
 
-  // it('should show login option when clicked', () => {
-  //   const compToTest = new LandingComponent(mockAuth, mockRouter)
-  //   expect(compToTest.statusLogin).toBe(false) // at first
-
-  //   compToTest.changeClassLogin()
-  //   expect(compToTest.statusLogin).toBe(true) // when clicked
-
-  //   compToTest.changeClassLogin()
-  //   expect(compToTest.statusLogin).toBe(false) // when clicked again
-  // })
-  // it('should show register option when clicked', () => {
-  //   const compToTest = new LandingComponent(mockAuth, mockRouter)
-  //   expect(compToTest.statusRegister).toBe(false)
-
-  //   compToTest.changeClassRegister()
-  //   expect(compToTest.statusRegister).toBe(true)
-
-  //   compToTest.changeClassRegister()
-  //   expect(compToTest.statusRegister).toBe(false)
-  // })
-  it('should create', () => {
-    // eslint-disable-next-line no-undef
-    const spyFn = spyOn(component.authService, 'registerFront').and.callThrough
+  it('registerFront should have been called', () => {
+    spyOn(component.authService, 'registerFront')
     component.sendRegisterInfo()
 
-    expect(spyFn).toHaveBeenCalled()
+    expect(component.authService.registerFront).toHaveBeenCalled()
+  })
+
+  it('should call changeClassLogin method', () => {
+    spyOn(component, 'changeClassLogin')
+    element = fixture.debugElement.query(By.css('button')).nativeElement
+    element.click()
+    expect(component.changeClassLogin).toHaveBeenCalled()
   })
 })

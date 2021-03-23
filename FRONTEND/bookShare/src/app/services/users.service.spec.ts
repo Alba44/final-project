@@ -9,8 +9,8 @@ describe('UsersService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-
-      imports: [HttpClientTestingModule, RouterTestingModule, FormsModule] // cosas que te suele pedir
+      imports: [HttpClientTestingModule, RouterTestingModule, FormsModule], // cosas que te suele pedir
+      providers: [UsersService]
     })
     service = TestBed.inject(UsersService)
   })
