@@ -12,7 +12,7 @@ function authControllers () {
       user.save()
 
       req.login(user, () => {
-        res.redirect('/api/users')
+        res.json(user)
       })
     } catch (error) {
       res.status(500)
@@ -21,7 +21,6 @@ function authControllers () {
   }
 
   async function login (req, res) {
-    res.status(200)
     const filter = { ...req.body }
     await User.findOne(filter, (error, user) => {
       error

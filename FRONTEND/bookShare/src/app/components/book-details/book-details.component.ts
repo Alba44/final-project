@@ -50,24 +50,14 @@ export class BookDetailsComponent implements OnInit {
     this.bookService.updateBook(formInfo, this.bookId)
   }
 
-  selectImage (event: Event) {
-    const file = (event.target as HTMLInputElement).files[0]
-    this.updateBookForm.patchValue({ covers: file })
-    this.updateBookForm.get('covers').updateValueAndValidity()
-    const reader = new FileReader()
-    reader.onload = () => {
-      this.bookCover = reader.result.toString()
-    }
-    reader.readAsDataURL(file)
-  }
-
   borrowBook () {
     this.isAvailable = !this.isAvailable
     this.bookService.updateBook({ available: this.isAvailable }, this.bookId)
   }
 
   removeBook () {
-    this.bookService.deleteBook(this.bookId)
+    this.bookService.deleteBookFromBooks(this.bookId)
+    this.bookService.deleteBookFromUser(this.bookId, this.userId)
   }
 
   renderBookInfo (bookId) {

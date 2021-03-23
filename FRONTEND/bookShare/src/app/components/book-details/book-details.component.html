@@ -4,9 +4,7 @@
   <section class="profile__user-info">
     <form class="profile__details-container" [formGroup]="updateBookForm">
       <div class="profile__picture-container">
-        <img class="profile__picture" [src]="bookCover" alt="book cover"/>
-        <input type="file" #covers (change)="selectImage($event)" *ngIf="bookLender === userId" formControlName="covers" style="display: none">
-        <button class="profile__picture-update" *ngIf="bookLender === userId" (click)="covers.click()" style="display: none">Update cover</button>
+        <img class="profile__picture" src={{bookCover}} alt="book cover"/>
       </div>
       <div class="profile__details-form" >
         <div class="details-form__header">

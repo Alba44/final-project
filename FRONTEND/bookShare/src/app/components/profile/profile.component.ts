@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit {
     const reader = new FileReader()
     reader.onload = () => {
       this.profilePic = reader.result.toString()
+      console.log(reader.result)
     }
     reader.readAsDataURL(file)
   }

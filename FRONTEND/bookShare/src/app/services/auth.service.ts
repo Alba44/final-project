@@ -15,7 +15,7 @@ export class AuthService {
   constructor (private http: HttpClient) { }
 
   registerFront (registerInfo) {
-    return this.http.post<User>(this.authRegisterURL, registerInfo).subscribe()
+    return this.http.post<User>(this.authRegisterURL, registerInfo)
   }
 
   public isAuthenticated () : boolean {

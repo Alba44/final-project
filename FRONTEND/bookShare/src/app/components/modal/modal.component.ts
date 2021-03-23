@@ -65,7 +65,6 @@ export class ModalComponent {
       this.usersService.addBookToUser({ books: book._id }, userId)
     })
     this.bookFormInfo.reset()
-
     const modalComp = document.getElementsByClassName('profile__dialog')[0]
     modalComp.classList.remove('display')
   }

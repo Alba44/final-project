@@ -23,10 +23,13 @@ export class LandingComponent {
       password: new FormControl('', Validators.required)
     })
 
-    constructor (private authService: AuthService, private router : Router) {}
+    constructor (public authService: AuthService, private router : Router) {}
 
     sendRegisterInfo () {
-      this.authService.registerFront(this.registerForm.value)
+      this.authService.registerFront(this.registerForm.value).subscribe(user => {
+        localStorage.setItem('userInfo', user._id)
+        this.router.navigate([`/profile/${user._id}`])
+      })
     }
 
     sendLoginInfo () {
@@ -38,9 +41,15 @@ export class LandingComponent {
 
     changeClassLogin () {
       this.statusLogin = !this.statusLogin
+      if (this.statusRegister) {
+        this.statusRegister = !this.statusRegister
+      }
     }
 
     changeClassRegister () {
       this.statusRegister = !this.statusRegister
+      if (this.statusLogin) {
+        this.statusLogin = !this.statusLogin
+      }
     }
 }
