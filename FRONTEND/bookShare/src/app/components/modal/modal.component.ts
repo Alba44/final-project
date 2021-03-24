@@ -63,7 +63,6 @@ export class ModalComponent {
   sendBookBack () {
     const userId = localStorage.getItem('userInfo')
     const newBook = { ...this.bookFormInfo.value, lender: userId }
-    console.log('form value', this.bookFormInfo.value)
     this.booksService.createBook(newBook).subscribe((book) => {
       this.usersService.addBookToUser({ books: book._id }, userId)
       this.booksService.getUserBooks(userId)
