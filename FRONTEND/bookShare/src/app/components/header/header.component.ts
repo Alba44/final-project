@@ -16,6 +16,6 @@ export class HeaderComponent {
 
   logout () {
     localStorage.removeItem('userInfo')
-    this.router.navigate(['/'])
+    this.router.navigate(['/landing'])
   }
 }
