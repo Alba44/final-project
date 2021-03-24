@@ -1,8 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
-    jest: true
+    es2021: true
   },
   extends: [
     'standard'
@@ -20,6 +19,7 @@ module.exports = {
     'linebreak-style': 0,
     'global-require': 0,
     'eslint linebreak-style': [0, 'error', 'windows'],
-    'no-useless-constructor': 'off'
+    'no-useless-constructor': 'off',
+    'no-undef': 0
   }
 }

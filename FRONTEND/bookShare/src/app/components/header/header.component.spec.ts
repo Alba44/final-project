@@ -1,17 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { Router } from '@angular/router'
+import { Router, RouterModule } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
+import { LandingComponent } from '../landing/landing.component'
+import { ProfileComponent } from '../profile/profile.component'
 
 import { HeaderComponent } from './header.component'
 
-describe('Given a HeaderComponent', () => {
+describe('HeaderComponent', () => {
   let component: HeaderComponent
   let fixture: ComponentFixture<HeaderComponent>
-  let mockRouter: Partial<Router>
+  let router: Router
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      providers: [{ provide: Router, useValue: mockRouter }]
+      imports: [RouterTestingModule.withRoutes(
+        [{ path: 'landing', component: LandingComponent },
+          { path: 'profile/userId', component: ProfileComponent }]
+      ), RouterModule.forRoot([])]
     })
       .compileComponents()
   })
@@ -20,12 +26,26 @@ describe('Given a HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    router = TestBed.inject(Router)
   })
 
-  it('should create', () => {
-    const spyFn = spyOn(component, 'navigate')
+  it('should call navigate with navigate function', () => {
+    spyOn(component, 'navigate').and.callThrough()
+
+    const navigateSpy = spyOn(router, 'navigate')
+
     component.navigate()
 
-    expect(spyFn).toHaveBeenCalled()
+    expect(navigateSpy).toHaveBeenCalled()
+  })
+
+  it('should call navigate with logout function', () => {
+    spyOn(component, 'navigate').and.callThrough()
+
+    const navigateSpy = spyOn(router, 'navigate')
+
+    component.logout()
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/landing'])
   })
 })

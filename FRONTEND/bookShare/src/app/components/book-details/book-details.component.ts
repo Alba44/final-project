@@ -10,7 +10,7 @@ import { BooksService } from '../../services/books.service'
 })
 export class BookDetailsComponent implements OnInit {
   allBooks: any = this.bookService.books$
-  bookCover
+  bookCover: string
   bookId: string
   userId: string = localStorage.getItem('userInfo')
   bookLender: string
@@ -19,8 +19,8 @@ export class BookDetailsComponent implements OnInit {
   updateBookForm: FormGroup
 
   constructor (
-    private bookService: BooksService,
-    private activatedRoute: ActivatedRoute) { }
+    public bookService: BooksService,
+    public activatedRoute: ActivatedRoute) { }
 
   ngOnInit (): void {
     this.updateBookForm = new FormGroup({
@@ -46,7 +46,7 @@ export class BookDetailsComponent implements OnInit {
     })
   }
 
-  updateInfo (formInfo) {
+  updateInfo (formInfo: object) {
     this.bookService.updateBook(formInfo, this.bookId)
   }
 

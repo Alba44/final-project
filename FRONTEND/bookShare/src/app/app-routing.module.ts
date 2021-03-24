@@ -8,7 +8,8 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service'
 import { BookDetailsComponent } from './components/book-details/book-details.component'
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path: 'landing', component: LandingComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'search', component: SearchListComponent, canActivate: [AuthGuard] },

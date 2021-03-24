@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { BooksService } from 'src/app/services/books.service'
 import { UsersService } from 'src/app/services/users.service'
 import { environment } from 'src/environments/environment'
+import { BehaviorSubject } from 'rxjs'
+import { Book } from 'src/app/models/Book'
 
 @Component({
   selector: 'app-modal',
@@ -12,6 +14,7 @@ import { environment } from 'src/environments/environment'
 export class ModalComponent {
   urlCover = environment.coverURL
   urlNoImage = environment.noPicURL
+  userBooks: BehaviorSubject<Book[]> = this.booksService.userBooks$
   bookKey: string
   bookJSON: any
   coverString: string
@@ -60,9 +63,9 @@ export class ModalComponent {
   sendBookBack () {
     const userId = localStorage.getItem('userInfo')
     const newBook = { ...this.bookFormInfo.value, lender: userId }
-    console.log('form value', this.bookFormInfo.value)
     this.booksService.createBook(newBook).subscribe((book) => {
       this.usersService.addBookToUser({ books: book._id }, userId)
+      this.booksService.getUserBooks(userId)
     })
     this.bookFormInfo.reset()
     const modalComp = document.getElementsByClassName('profile__dialog')[0]

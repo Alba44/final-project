@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/services/auth.service'
 export class LandingComponent {
   statusLogin : boolean = false
   statusRegister : boolean = false
-  loggedUser: any = this.authService.loggedUser$
 
   registerForm = new FormGroup({
     email: new FormControl('', Validators.required),
@@ -42,14 +41,14 @@ export class LandingComponent {
     changeClassLogin () {
       this.statusLogin = !this.statusLogin
       if (this.statusRegister) {
-        this.statusRegister = !this.statusRegister
+        return !this.statusRegister
       }
     }
 
     changeClassRegister () {
       this.statusRegister = !this.statusRegister
       if (this.statusLogin) {
-        this.statusLogin = !this.statusLogin
+        return !this.statusLogin
       }
     }
 }

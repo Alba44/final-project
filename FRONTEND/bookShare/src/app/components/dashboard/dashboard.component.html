@@ -10,9 +10,9 @@
       <button class="search-btn" routerLink="/search" (click)="search(filterForm.value, searchField.value)">Search</button>
     </div>
     <div class="search-checkbox" [formGroup]="filterForm">
-      <input formControlName="searchBy" name="searchCondition" type="radio" value="title" checked>
+      <input formControlName="searchBy" name="searchBy" type="radio" value="title" checked>
       <label for="title">Title</label>
-      <input formControlName="searchBy" name="searchCondition" type="radio" value="author_name">
+      <input formControlName="searchBy" name="searchBy" type="radio" value="author_name">
       <label for="author">Author</label>
     </div>
   </section>

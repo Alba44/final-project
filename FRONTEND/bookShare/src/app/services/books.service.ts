@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs'
@@ -19,7 +18,7 @@ export class BooksService {
   userBooks$ = new BehaviorSubject<Book[]>([])
   selectedBook$ = new BehaviorSubject<Book[]>([])
 
-  constructor (private http: HttpClient) { }
+  constructor (public http: HttpClient) { }
 
   getAllBooks () {
     return this.http.get<Book[]>(this.booksURL)

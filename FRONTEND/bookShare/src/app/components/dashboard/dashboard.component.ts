@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  search ({ searchBy }, term) {
+  search ({ searchBy }, term:string) {
     this.searchTerm$.next({ term, searchBy })
   }
 }
