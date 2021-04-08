@@ -34,7 +34,7 @@ export class LandingComponent {
     sendLoginInfo () {
       this.authService.validate(this.loginForm.value).subscribe(user => {
         localStorage.setItem('userInfo', user._id)
-        this.router.navigate([`/profile/${user._id}`])
+        this.router.navigate(['/dashboard'])
       })
     }
 
