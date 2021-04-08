@@ -41,14 +41,14 @@ export class LandingComponent {
     changeClassLogin () {
       this.statusLogin = !this.statusLogin
       if (this.statusRegister) {
-        return !this.statusRegister
+        this.statusRegister = !this.statusRegister
       }
     }
 
     changeClassRegister () {
       this.statusRegister = !this.statusRegister
       if (this.statusLogin) {
-        return !this.statusLogin
+        this.statusLogin = !this.statusLogin
       }
     }
 }
