@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Baloo 2", cursive;
+  color: #252424;
+  overflow-y: auto;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px #bebebe;
+          box-shadow: inset 0 0 5px #bebebe;
+  border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #E68F77;
+  border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #D5441C;
+}
+
+header {
+  background-color: #F8F5F5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header .header__container {
+  width: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header .header__container .header__logo {
+  width: 170px;
+  margin: 10px;
+}
+
+header .header__container .header__login-container .header__login {
+  height: 35px;
+  background: #F4EBEB;
+  border: 0.5px solid #252424;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+header .header__container .header__login-container .header__submit {
+  width: 78px;
+  height: 35px;
+  background: #F4EBEB;
+  border: 0.5px solid #252424;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+header .header__container .header__logged {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .header__container .header__logged .header__logos {
+  border: 0;
+  background: none;
+  margin-left: 20px;
+  margin-right: 40px;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+header .header__container .header__logged .header__logos .logo {
+  width: 45px;
+}
+/*# sourceMappingURL=header.component.css.map */
