@@ -35,13 +35,19 @@
           </button>
         </div>
         <label for="title" class="form-label">Title:</label>
-        <input id="title" class="form-input" type="text" formControlName="title"/>
+        <input *ngIf="bookLender !== userId" id="title" class="form-input" type="text" formControlName="title" disabled/>
+        <input *ngIf="bookLender === userId" id="title" class="form-input" type="text" formControlName="title"/>
         <label for="author" class="form-label">Author:</label>
-        <input id="author" class="form-input" type="text" formControlName="author_name"/>
+        <input *ngIf="bookLender !== userId" id="author" class="form-input" type="text" formControlName="author_name" disabled/>
+        <input *ngIf="bookLender === userId" id="author" class="form-input" type="text" formControlName="author_name"/>
         <label for="year" class="form-label">Published:</label>
-        <input id="year" class="form-input" type="text" formControlName="first_publish_year"/>
+        <input *ngIf="bookLender !== userId" id="year" class="form-input" type="text" formControlName="first_publish_year" disabled/>
+        <input *ngIf="bookLender === userId" id="year" class="form-input" type="text" formControlName="first_publish_year"/>
         <label for="description" class="form-label">Description:</label>
-        <textarea id="description" type="text" cols="30" rows="10" formControlName="description"></textarea>
+        <textarea *ngIf="bookLender !== userId" id="description" type="text" cols="30" rows="10" formControlName="description" disabled></textarea>
+        <textarea *ngIf="bookLender === userId" id="description" type="text" cols="30" rows="10" formControlName="description"></textarea>
+        <label *ngIf="bookLender !== userId" for="lender" class="form-label">Lender:</label>
+        <input *ngIf="bookLender !== userId" id="lender" class="form-input" type="text" [value]="this.bookLender.name" disabled/>
         <label for="available" class="form-label" *ngIf="bookLender === userId">
           Available to borrow:
           <input

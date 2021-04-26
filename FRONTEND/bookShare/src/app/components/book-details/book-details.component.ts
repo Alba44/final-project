@@ -13,7 +13,7 @@ export class BookDetailsComponent implements OnInit {
   bookCover: string
   bookId: string
   userId: string = localStorage.getItem('userInfo')
-  bookLender: string
+  bookLender
   isAvailable: boolean
 
   updateBookForm: FormGroup

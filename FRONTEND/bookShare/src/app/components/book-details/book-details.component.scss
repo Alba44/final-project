@@ -16,7 +16,6 @@ align-items: center;
   .profile__user-info{
     width: 75%;
     display: flex;
-    justify-content: space-around;
     padding-top: 40px;
     margin-bottom: 40px;
 
@@ -28,7 +27,7 @@ align-items: center;
       justify-content: space-between;
       align-items: flex-start;
 
-      @include media(800px){
+      @include media(1200px){
       width: 90%;
       flex-direction: column;
       align-items: center;
@@ -40,7 +39,7 @@ align-items: center;
         justify-content: center;
         align-items: center;
 
-        @include media (800px){
+        @include media (1200px){
           margin-bottom: 40px;
         }
 
@@ -75,7 +74,7 @@ align-items: center;
         border: 15px solid $turquoise;
         border-radius: 5px;
 
-        @include media(800px){
+        @include media(1200px){
         width: 70%;
         }
 
