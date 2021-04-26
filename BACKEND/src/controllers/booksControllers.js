@@ -27,7 +27,7 @@ function booksControllers () {
     const { bookId } = req.params // id del book
     try {
       const selectedBook = await Book.findById(bookId)
-        .populate('users')
+        .populate('lender')
       res.json(selectedBook)
     } catch (error) {
       res.status(500)
