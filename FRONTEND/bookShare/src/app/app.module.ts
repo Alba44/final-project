@@ -12,7 +12,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { ModalComponent } from './components/modal/modal.component'
 import { SearchListComponent } from './components/search-list/search-list.component'
 import { BookDetailsComponent } from './components/book-details/book-details.component'
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { ConversationComponent } from './components/chat/conversation/conversation.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AppComponent } from './app.component'
     ProfileComponent,
     ModalComponent,
     SearchListComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    ChatComponent,
+    ConversationComponent
   ],
   imports: [
     BrowserModule,
