@@ -8,53 +8,53 @@
       </div>
       <div class="profile__details-form" >
         <div class="details-form__header">
-          <span class="details-form__available" *ngIf="bookLender !== userId && this.isAvailable" style="color: #0a816b">Available</span>
-          <span class="details-form__available" *ngIf="bookLender !== userId && !this.isAvailable" style="color: #D5441C">Not Available</span>
+          <span class="details-form__available" *ngIf="bookLender._id !== userId && this.isAvailable" style="color: #0a816b">Available</span>
+          <span class="details-form__available" *ngIf="bookLender._id !== userId && !this.isAvailable" style="color: #D5441C">Not Available</span>
           <button
             class="details__update-btn"
             type="button"
             (click)="updateInfo(updateBookForm.value)"
-            *ngIf="bookLender === userId">
+            *ngIf="bookLender._id === userId">
             Update info
           </button>
           <button
             class="details__update-btn"
             type="button"
             (click)="removeBook()"
-            *ngIf="bookLender === userId"
+            *ngIf="bookLender._id === userId"
             [routerLink]="['/profile/', userId]">
             Delete book
           </button>
           <button
             class="details__update-btn"
             type="button"
-            *ngIf="bookLender !== userId"
+            *ngIf="bookLender._id !== userId"
             [disabled]="isAvailable ? false : true"
             (click)="borrowBook()">
             Borrow
           </button>
         </div>
         <label for="title" class="form-label">Title:</label>
-        <input *ngIf="bookLender !== userId" id="title" class="form-input" type="text" formControlName="title" disabled/>
-        <input *ngIf="bookLender === userId" id="title" class="form-input" type="text" formControlName="title"/>
+        <input *ngIf="bookLender._id !== userId" id="title" class="form-input" type="text" formControlName="title" disabled/>
+        <input *ngIf="bookLender._id === userId" id="title" class="form-input" type="text" formControlName="title"/>
         <label for="author" class="form-label">Author:</label>
-        <input *ngIf="bookLender !== userId" id="author" class="form-input" type="text" formControlName="author_name" disabled/>
-        <input *ngIf="bookLender === userId" id="author" class="form-input" type="text" formControlName="author_name"/>
+        <input *ngIf="bookLender._id !== userId" id="author" class="form-input" type="text" formControlName="author_name" disabled/>
+        <input *ngIf="bookLender._id === userId" id="author" class="form-input" type="text" formControlName="author_name"/>
         <label for="year" class="form-label">Published:</label>
-        <input *ngIf="bookLender !== userId" id="year" class="form-input" type="text" formControlName="first_publish_year" disabled/>
-        <input *ngIf="bookLender === userId" id="year" class="form-input" type="text" formControlName="first_publish_year"/>
+        <input *ngIf="bookLender._id !== userId" id="year" class="form-input" type="text" formControlName="first_publish_year" disabled/>
+        <input *ngIf="bookLender._id === userId" id="year" class="form-input" type="text" formControlName="first_publish_year"/>
         <label for="description" class="form-label">Description:</label>
-        <textarea *ngIf="bookLender !== userId" id="description" type="text" cols="30" rows="10" formControlName="description" disabled></textarea>
-        <textarea *ngIf="bookLender === userId" id="description" type="text" cols="30" rows="10" formControlName="description"></textarea>
-        <label *ngIf="bookLender !== userId" for="lender" class="form-label">Lender:</label>
-        <input *ngIf="bookLender !== userId" id="lender" class="form-input" type="text" [value]="this.bookLender.name" disabled/>
+        <textarea *ngIf="bookLender._id !== userId" id="description" type="text" cols="30" rows="10" formControlName="description" disabled></textarea>
+        <textarea *ngIf="bookLender._id === userId" id="description" type="text" cols="30" rows="10" formControlName="description"></textarea>
+        <label *ngIf="bookLender._id !== userId" for="lender" class="form-label">Lender:</label>
+        <input *ngIf="bookLender._id !== userId" id="lender" class="form-input" type="text" [value]="this.bookLender.name" disabled/>
         <label for="available" class="form-label" *ngIf="bookLender === userId">
           Available to borrow:
           <input
           type="checkbox"
           id="available"
           [checked]="isAvailable"
-          *ngIf="bookLender === userId"
+          *ngIf="bookLender._id === userId"
           formControlName="available">
         </label>
       </div>
