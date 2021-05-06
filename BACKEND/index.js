@@ -4,13 +4,15 @@ const debug = require('debug')('app')
 const { connect } = require('mongoose')
 const session = require('express-session')
 const chalk = require('chalk')
+const cors = require('cors')
 require('dotenv').config()
+
 const usersRouter = require('./src/routers/usersRouter')
 const booksRouter = require('./src/routers/booksRouter')
 const authRouter = require('./src/routers/authRouter')
-const cors = require('cors')
 
 const app = express()
+
 const port = process.env.PORT || 5000
 const localhost = process.env.LOCALHOST
 const DDBB = process.env.DDBB_URL
